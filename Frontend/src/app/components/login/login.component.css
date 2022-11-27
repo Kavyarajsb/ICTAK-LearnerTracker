@@ -1,0 +1,12 @@
+button{
+    background-color: #D9DCD6;
+    border-color: #BC4E6B;
+    font-weight: bolder;
+}
+button:hover{
+    background-color: #BC4E6B;
+    color: #D9DCD6;
+}
+small{
+color: #BC4E6B;
+}
