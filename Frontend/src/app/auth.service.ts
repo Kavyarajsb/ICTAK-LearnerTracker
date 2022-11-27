@@ -9,7 +9,7 @@ export class AuthService {
   constructor(private http:HttpClient) { }
   loginToBackend(data:any){
 
-    return this.http.post<any>('http://localhost:3000/staff/login',data);
+    return this.http.post<any>('http://localhost:3000/api/login',data);
   }
   loggedIn(){
     return !! localStorage.getItem('token')
