@@ -23,6 +23,7 @@ import { LoginComponent } from './components/login/login.component';
 import {AuthService} from './auth.service';
 import {ApiService} from './api.service';
 import { TokenInterceptorService } from './token-interceptor.service';
+import { LearnerComponent } from './components/learner/learner.component';
 
 
 
@@ -33,7 +34,8 @@ import { TokenInterceptorService } from './token-interceptor.service';
     MemberComponent,
     HomeComponent,
     AddNewMemberComponent,
-    LoginComponent
+    LoginComponent,
+    LearnerComponent
   ],
   imports: [
     BrowserModule,
