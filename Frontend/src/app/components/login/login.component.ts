@@ -12,6 +12,33 @@ export class LoginComponent implements OnInit {
   constructor(private auth:AuthService,private router:Router) { }
 
   ngOnInit(): void {
+    let intro = document.querySelector<HTMLElement>('.intro')
+    let logo = document.querySelector('.logo-header')
+    let loginClick = document.querySelector('.login-click')
+    let logoSpan = document.querySelectorAll('.logo')
+    window.addEventListener('DOMContentLoaded',()=>{
+      setTimeout(()=>{
+        logoSpan.forEach((span,idx) => {
+          setTimeout(()=>{
+            span.classList.add('active')
+        }, (idx+1)*400);
+      })
+      setTimeout(()=>{
+        loginClick!.classList.add('active')
+    },1500)
+      // setTimeout(()=>{
+      //   logoSpan.forEach((span,idx)=>{
+      //     setTimeout(()=>{
+      //       span.classList.remove('active');
+      //       span.classList.add('fade');
+      //     }, (idx+1)*50)
+      //   })
+      // },4000)
+      // setTimeout(() => {
+      //   intro!.style.top= '-100vh'
+      // },2300);
+    })
+  })
   }
 
   login(form: any){
@@ -26,5 +53,12 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('token',res.token)
     this.router.navigateByUrl('home');
   })
+    }
+
+
+    slideUp(){
+      console.log('sliding up')
+      let intro = document.querySelector<HTMLElement>('.intro')
+      intro!.style.top= '-100vh'
     }
 }

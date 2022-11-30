@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const uniqueValidator = require('mongoose-unique-validator');
 const staffSchema = new mongoose.Schema({
     name : {
         type: String,
@@ -6,7 +7,8 @@ const staffSchema = new mongoose.Schema({
     },
     email :{
         type: String,
-        required : true
+        required : true,
+        unique: true
     },
     password :{
         type: String,
@@ -22,5 +24,6 @@ const staffSchema = new mongoose.Schema({
     }
 });
 
+staffSchema.plugin(uniqueValidator);
 const staffInfo = mongoose.model('staff', staffSchema);
 module.exports = staffInfo;

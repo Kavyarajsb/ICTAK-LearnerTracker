@@ -1,6 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Courier", monospace;
+}
+
+img{
+	max-width: 150px;
+	position: absolute;
+	top: 50%;
+	left: 10%;
+	transform: translate(-50%, -50%);
+}
+header{
+	position: relative;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 80px;
+}
+
+header h3{
+	position: absolute;
+	left: 10%;
+	bottom: 1rem;
+}
+
+/* Splash Screen */
+
+.intro{
+	position: fixed;
+	z-index: 1;
+	left: 0%;
+	top: 0%;
+	width: 100%;
+	height: 100%;
+	background-color: #2B2D42;
+	transition: 1s;
+}
+
+.logo-header{
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: #D9DCD6;
+	width: 850px;
+}
+.login-click{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: #D9DCD6;
+	opacity: 0;
+	cursor: pointer;
+	font-family: "Courier", monospace;
+}
+
+.logo{
+	position: relative;
+	display: inline-block;
+	left: -20px;
+	opacity: 0;
+}
+
+.logo.active{
+	left: 0;
+	opacity: 1;
+	transition: ease-in-out 0.5s;
+}
+.login-click.active{
+	opacity: 1;
+	transition: ease-in-out 0.5s;
+}
+
+.logo.fade{
+	bottom: 0;
+	opacity: 0;
+	transition: ease-in-out 0.5s;
+}
+
+/* Underine */
+.line {
+	width: 850px;
+	height: 2px;
+	background: #fff;
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.line::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #2B2D42;
+	animation: animate 0.5s linear;
+	animation-fill-mode: forwards;
+	animation-delay: 2s;
+}
+
+@keyframes animate {
+	0% {
+		left: 0;
+	}
+
+	100% {
+		left: 100%;
+	}
+
+
+}
+
+
+/* Login Form */
+.gradient-custom {
+	background: #D9DCD6
+	}
+.card{
+	background-color: #2B2D42;
+	color: #D9DCD6;
+}
+
 button{
     background-color: #D9DCD6;
-    border-color: #BC4E6B;
+	color: #2B2D42;
     font-weight: bolder;
 }
 button:hover{
@@ -10,3 +140,4 @@ button:hover{
 small{
 color: #BC4E6B;
 }
+

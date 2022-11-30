@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 const learnerSchema = new mongoose.Schema({
     learnerid:{
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     name:{
         type: String,
