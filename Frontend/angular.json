@@ -23,10 +23,7 @@
               "src/assets"
             ],
             "styles": [
-<<<<<<< HEAD
-=======
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
->>>>>>> f9998e5 (Admin Dashboard partially done)
               "src/styles.css"
             ],
             "scripts": []
@@ -94,10 +91,7 @@
               "src/assets"
             ],
             "styles": [
-<<<<<<< HEAD
-=======
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
->>>>>>> f9998e5 (Admin Dashboard partially done)
               "src/styles.css"
             ],
             "scripts": []
@@ -105,11 +99,8 @@
         }
       }
     }
-<<<<<<< HEAD
-=======
   },
   "cli": {
     "analytics": false
->>>>>>> f9998e5 (Admin Dashboard partially done)
   }
 }

@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 3000;
 const staffApi = require('./routes/staff');
 app.use('/api',staffApi);
 const learnerApi = require('./routes/learner');
-app.use('/learner',learnerApi);
+app.use('/api',learnerApi);
 
 
 //server code

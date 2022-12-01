@@ -1,0 +1,68 @@
+<h2 mat-dialog-title>{{titlemode}}
+<button mat-icon-button (click)="close()" style="float:right ; " >
+    <mat-icon>close</mat-icon>         
+</button>
+</h2>
+<mat-divider></mat-divider>
+
+<mat-dialog-content [formGroup]="learnerForm">
+    <div class="learner-container mt-3">
+            <input type="hidden" formControlName="_id">
+            <mat-form-field>
+                <input matInput placeholder="Learner ID" formControlName="learnerid">
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput placeholder="Name" formControlName="name">
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-select placeholder="Course" formControlName="course">
+                    <mat-option value="FSD">FSD</mat-option>
+                    <mat-option value="DSA">DSA</mat-option> 
+                    <mat-option value="ML-AI">ML-AI</mat-option>     
+                    <mat-option value="RPA">RPA</mat-option>   
+                    <mat-option value="ST">ST</mat-option>  
+                    <mat-option value="CSA">CSA</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-select placeholder="Project" formControlName="project">
+                    <mat-option value="ICTAK">ICTAK</mat-option>
+                    <mat-option value="KKEM">KKEM</mat-option> 
+                    <mat-option value="NORKA">NORKA</mat-option>     
+                    <mat-option value="ABCD">ABCD</mat-option>   
+                    <mat-option value="KDISC">KDISC</mat-option>  
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-select placeholder="Batch" formControlName="batch">
+                    <mat-option value="May_22">May_22</mat-option>
+                    <mat-option value="Jun_22">Jun_22</mat-option> 
+                    <mat-option value="Jul_22">Jul_22</mat-option>     
+                    <mat-option value="Aug_22">Aug_22</mat-option>     
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-select placeholder="Course Status" formControlName="coursestatus">
+                    <mat-option value="Qualified">Qualified</mat-option>
+                    <mat-option value="Incompetent">Incompetent</mat-option>   
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-select placeholder="Placement Status" formControlName="placementstatus">
+                    <mat-option value="Placed">Placed</mat-option>
+                    <mat-option value="Job Seeking">Job Seeking</mat-option>
+                    <mat-option value="NOT Interested">NOT Interested</mat-option>  
+                </mat-select>
+            </mat-form-field>     
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+   <button class="mat-raised-button" (click)="save()" [disabled]="!learnerForm.valid">SAVE</button>
+</mat-dialog-actions>
