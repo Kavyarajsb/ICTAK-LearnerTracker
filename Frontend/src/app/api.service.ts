@@ -18,6 +18,9 @@ export class ApiService {
     return this.http.post(`${this.apiUrl}/api/staff`, data);  
   }
 
+ deleteMemberDetails(id:any){
+    return this.http.delete(`${this.apiUrl}/api/staff/${id}`)
+  }
   getLearnersList(){
     return this.http.get(`${this.apiUrl}/api/learnerlist`);
   }

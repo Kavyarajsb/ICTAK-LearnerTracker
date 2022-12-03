@@ -1,3 +1,23 @@
 .container{
-    font-size: 20px;
+    font-size: 20px;}
+table {
+    width: 100%;
+  }
+  
+th.mat-sort-header-sorted {
+    color: black;
+  }
+
+.filter-header {
+    padding: 8px 24px 0 0;
+}
+.searchicon {
+   padding: 15px 0 0 0; 
+   text-align: right;
+   float: right;
+}
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+    color: gray;
 }
