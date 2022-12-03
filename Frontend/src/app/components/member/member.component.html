@@ -1,3 +1,71 @@
+<div>
+    <button mat-raised-button style="float:right ; margin-top: 2vh; margin-right:1vw ;"  (click)="addnew()">
+        <mat-icon>person_add</mat-icon>
+      Add New Member        
+    </button>
+</div>
+
+<!-- <div class="mat-elevation-z8">
+  <mat-table [dataSource]="listData"  matSort>
+    <ng-container matColumnDef="fullName">
+      <mat-header-cell *matHeaderCellDef  mat-sort-header>Full Name</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.fullName}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef  mat-sort-header>Email</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.email}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="mobile">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Mobile</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.mobile}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="city">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>City</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.city}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="departmentName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Department</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.departmentName}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-icon-button><mat-icon>launch</mat-icon></button>
+        <button mat-icon-button color="warn"><mat-icon>delete_outline</mat-icon></button>
+      </mat-cell>
+    </ng-container> -->
+
+
+    
+<!-- 
+<div class="container pt-5">
+    <table class="table" style="border: 2pt;">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Role</th>
+          
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let member of members; let i= index">
+            <th scope="row">{{i+1}}</th>
+            <td>{{member.name}}</td>
+            <td>{{member.email}}</td>
+            <td>{{member.role}}</td> 
+           
+            <td> 
+                <button  type="button" class="btn btn-outline-primary me-2" >Edit</button> &nbsp;&nbsp;
+                <button  type="button" class="btn btn-outline-danger ">Delete</button>
+            </td>
+
+          </tr>
+      
+        </tbody>
+      </table>
+</div> -->
 <div class="container">
   <div class="row">
     <div class="col-sm-1 searchicon">
