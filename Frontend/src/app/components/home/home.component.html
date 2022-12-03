@@ -1,4 +1,3 @@
-
 <button mat-icon-button *ngIf="sidenav.mode ==='over'" (click)="sidenav.toggle()">
     <mat-icon *ngIf="!sidenav.opened">
      menu
@@ -30,8 +29,7 @@
             <a>© Copyright 2022 ICTAK</a>
         </footer>
     </mat-sidenav>
-
-
+    
     <!-- content -->
     
     <mat-sidenav-content>
@@ -50,8 +48,8 @@
                 <mat-icon>exit_to_app</mat-icon>
                 Logout
               </button>
-              </mat-menu>
-        <div class="content" style="margin-top:10vh ;">
+            </mat-menu>
+        <div class="content" style="margin-top:15vh ;">
             <router-outlet></router-outlet>
         </div>
     </mat-sidenav-content>
