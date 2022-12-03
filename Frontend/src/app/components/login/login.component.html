@@ -1,46 +1,50 @@
-<div class="intro">
-       
-  <img src="../../../assets/logo.png" alt="logo">
-          <div class="logo-header">
-            <h1 style="font-size: 30px; font-weight:600;">
-              <span class="logo">Welcome to&nbsp;</span><span class="logo"> ICTAK&nbsp;</span><span class="logo">Learner Tracker</span><br>
-                  </h1>
-                  <h2 class="desc" style="	font-family: 'Courier', monospace;">The Learner Tracker will help you manage the details of ICTAK students. It will enable efiicient handling of data during operations without compromising data integrity</h2>
-                  <br><br><button (click)="slideUp()" class="loginClick btn btn-outline-light btn-sm px-5">
-                    <span>Continue to Login</span>
-                  </button>
-          </div>
-
-        
-
+<div class="intro"><div  style="background-color: white; min-height: 100px; position: absolute; z-index: 100;"></div>
+<div class="container-elem"  style="background-color: white;">
+  <div class="inline-container" style="background: transparent;">  <img src="../../../assets/logo.png" alt="logo">
+  </div>
+    <div class="inline-container" style="background: none;">
+      <h1 class="logo-header" style="font-size: 45px;">
+        <span class="logo">Welcome to&nbsp;</span><span class="logo"> ICTAK&nbsp;</span><span class="logo">LearnerTracker</span><br>
+        <span class="line"></span>
+      </h1>
+      <h3 (click)="slideUp()" class="login-click">Continue to login</h3>
+    
     </div>
+</div>
+</div>
 
 <section class="gradient-custom">
-    <div class="container py-5" style="height: 100vh">
+    <div class="container py-5 ">
       <div class="row d-flex justify-content-center align-items-center">
-        <div class="col-12 col-md-6 col-lg-4 col-xl-4">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
           <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
           <div class="card" style="border-radius: 1rem;">
             <div class="card-body text-center">
   
-              <div class="mb-md-3 mt-md-2 ">
+              <div class="mb-md-5 mt-md-4 ">
   
                 <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
-                <p class="text-white-50 mb-2">Please enter your login and password!</p>
+                <p class="text-white-50 mb-5">Please enter your login and password!</p>
   
-                <div class="form-outline form-white">
+                <div class="form-outline form-white mb-4">
                   <label class="form-label" for="typeEmailX">Email</label>
                   <input type="email" id="typeEmailX" class="form-control form-control-lg" [(ngModel)]="user.email" name="e1" #email="ngModel" required pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"/>
                   <small><span [class.d-none]="email.valid || email.pristine" >Please enter a valid email. </span><span [class.d-none]="!(email.touched && email.pristine)">This field is required.</span></small>
                 </div>
   
-                <div class="form-outline form-white mb-2">
+                <div class="form-outline form-white mb-4">
                   <label class="form-label" for="typePasswordX">Password</label>
                   <input type="password" id="typePasswordX" class="form-control form-control-lg" [(ngModel)]="user.password" name="p1" #password="ngModel" required minlength="6"/>
                   <small><span [class.d-none]="password.valid || password.pristine" >Please enter atleast 6 characters. </span><span [class.d-none]="!(password.touched && password.pristine)">This field is required.</span></small>
                 </div>
     
                 <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+  
+                <div class="d-flex justify-content-center text-center mt-4">
+                  <a href="#!" class="text-white"><i class="fab fa-facebook-f fa-lg"></i></a>
+                  <a href="#!" class="text-white"><i class="fab fa-twitter fa-lg mx-4 px-2"></i></a>
+                  <a href="#!" class="text-white"><i class="fab fa-google fa-lg"></i></a>
+                </div>
   
               </div>
 

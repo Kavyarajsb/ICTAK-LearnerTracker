@@ -1,53 +1,58 @@
-<mat-toolbar>
-    <mat-toolbar-row class="justify-content-between">
-        <button mat-icon-button *ngIf="sidenav.mode ==='over'" (click)="sidenav.toggle()">
-            <mat-icon *ngIf="!sidenav.opened">
-                menu
-            </mat-icon>
-            <mat-icon *ngIf="sidenav.opened">
-                close
-            </mat-icon>
-        </button>
-        ICTAK LEARNER TRACKER
-        <!-- <img src="./assets/logo.png" alt="" class="logo"/> -->
-        <div>
-            <button mat-dialog-actions mat-button [mat-menu-trigger-for]="menu" class="user mt-2 d-flex align-right">
-                        
-                <mat-icon>account_circle</mat-icon>
-                Admin
-                <mat-icon>keyboard_arrow_down</mat-icon>
-            </button>
-                <mat-menu #menu="matMenu">
-                  <button mat-menu-item>
-                    <mat-icon>person</mat-icon>
-                    Profile
-                  </button>
-                  <button mat-menu-item>
-                    <mat-icon>exit_to_app</mat-icon>
-                    Logout
-                  </button>
-                  </mat-menu>
-        </div>
-    </mat-toolbar-row>
-</mat-toolbar>
-
+<button mat-icon-button *ngIf="sidenav.mode ==='over'" (click)="sidenav.toggle()">
+    <mat-icon *ngIf="!sidenav.opened">
+     menu
+    </mat-icon>
+    <mat-icon *ngIf="sidenav.opened">
+    close
+    </mat-icon>
+</button>
 <mat-sidenav-container>
     <mat-sidenav #sidenav="matSidenav">
-        <button mat-button class="menu-button">
+        <div>
+            <img src="./assets/logo.png" alt="" class="logo"/>
+            <p class="cap">LEARNER TRACKER</p>
+        </div>
+        
+        <button mat-button class="menu-button" style="padding-left: 50px;">
             <mat-icon>home</mat-icon>
             <span routerLink="dashboard">Dashboard</span>
         </button>
-        <button mat-button class="menu-button">
+        <button mat-button class="menu-button" style="padding-left: 50px;">
             <mat-icon>people</mat-icon>
-            <span routerLink="member">Member</span>
+            <span routerLink="member">Staff</span>
         </button>
-        <button mat-button class="menu-button">
+        <button mat-button class="menu-button" style="padding-left: 50px;">
             <mat-icon>device_hub</mat-icon>
             <span routerLink="learner">Learners</span>
         </button>
+        <footer class="footer">
+            <a>© Copyright 2022 ICTAK</a>
+        </footer>
     </mat-sidenav>
+    <div>
+    </div>
+
+
+    <!-- content -->
+    
     <mat-sidenav-content>
-        <div class="content mat-elevation-z4">
+        <button mat-dialog-actions mat-button [mat-menu-trigger-for]="menu" class="user mt-2 d-flex" style="float:right ;">
+                    
+            <mat-icon>account_circle</mat-icon>
+            Admin
+            <mat-icon>keyboard_arrow_down</mat-icon>
+        </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>
+                <mat-icon>person</mat-icon>
+                Profile
+              </button>
+              <button mat-menu-item (click)="logout()" routerLink="">
+                <mat-icon>exit_to_app</mat-icon>
+                Logout
+              </button>
+              </mat-menu>
+        <div class="content" style="margin-top:10vh ;">
             <router-outlet></router-outlet>
         </div>
     </mat-sidenav-content>
