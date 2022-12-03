@@ -59,10 +59,15 @@ export class MemberComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(AddNewMemberComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(
       data => {
-        this.api.updateMemberDetails(data).subscribe(res => {
-          console.log('Member updated successfully');
-          this.getData();
-        })
+        if(data){
+          this.api.updateMemberDetails(data).subscribe(res => {
+            console.log('Member updated successfully');
+            this.getData();
+          })
+        }        
+        else {
+          console.log("close without validation on edit member");
+        } 
       }
     )
   }
@@ -82,12 +87,16 @@ export class MemberComponent implements OnInit, AfterViewInit {
 
     dialogRef.afterClosed().subscribe(
       data => {
-        this.api.addNewMember(data).subscribe(res => {
-          console.log('Member added successfully');
-          this.getData();
-        })
-      }
-    );
+        if(data){
+          this.api.addNewMember(data).subscribe(res => {
+            console.log('Member added successfully');
+            this.getData();
+          })
+        }
+        else {
+          console.log("close without validation on add member");
+        }        
+      });
   }
 
   deleteData(id: any) {

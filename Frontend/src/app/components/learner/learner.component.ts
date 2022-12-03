@@ -47,13 +47,16 @@ export class LearnerComponent implements OnInit, AfterViewInit {
       }          
     }
     else {
-      this.router.navigate(['']);
+      this.logout();
     }    
   }
 
   logout(){
     localStorage.clear();
-    this.router.navigate(['']);
+    this.router.navigate([''])
+    .then(() => {
+      window.location.reload();
+    });
   }
 
   // used for sort
@@ -93,10 +96,15 @@ export class LearnerComponent implements OnInit, AfterViewInit {
       // save data to db after clicking SAVE from dialog popup
       dialogRef.afterClosed().subscribe(
         data => {
-          this.api.updateLearnerDetails(data).subscribe(res =>{
-            console.log('Learner updated successfully');
-            this.getData();
-          })
+          if(data){
+            this.api.updateLearnerDetails(data).subscribe(res =>{
+              console.log('Learner updated successfully');
+              this.getData();
+            })
+          }
+          else {
+            console.log("close without validation on edit learner");
+          }          
         }
       );    
   }
@@ -124,10 +132,15 @@ export class LearnerComponent implements OnInit, AfterViewInit {
     
     dialogRef.afterClosed().subscribe(
       data => {
-        this.api.addNewLearner(data).subscribe(res =>{
-          console.log('Learner added successfully');
-          this.getData();
-        })
+        if(data){
+          this.api.addNewLearner(data).subscribe(res =>{
+            console.log('Learner added successfully');
+            this.getData();
+          })
+        }
+        else {
+          console.log("close without validation on add learner");
+        }        
       }
     ); 
   }

@@ -72,7 +72,10 @@ export class LearnerdialogueComponent implements OnInit {
 
   logout(){
     localStorage.clear();
-    this.router.navigate(['']);
+    this.router.navigate([''])
+    .then(() => {
+      window.location.reload();
+    });
   }
 
   save() {
@@ -81,5 +84,24 @@ export class LearnerdialogueComponent implements OnInit {
 
   close() {
     this.dialogRef.close();
+    // if (!this.learnerForm.touched && !this.learnerForm.dirty) {
+    //   console.log("hi, inside close");
+    //   this.learnerForm.controls["learnerid"].setErrors(null);
+    //   this.learnerForm.controls["learnerid"].clearValidators();
+    //   this.learnerForm.controls["learnerid"].updateValueAndValidity({onlySelf : true});
+    //   this.learnerForm.controls["name"].setErrors(null);
+    //   this.learnerForm.controls["name"].clearValidators();
+    //   this.learnerForm.controls["name"].updateValueAndValidity({onlySelf : true});
+    //   this.learnerForm.controls["course"].setErrors(null);
+    //   this.learnerForm.controls["course"].clearValidators();
+    //   this.learnerForm.controls["course"].updateValueAndValidity({onlySelf : true});
+    //   this.learnerForm.controls["project"].setErrors(null);
+    //   this.learnerForm.controls["project"].clearValidators();
+    //   this.learnerForm.controls["project"].updateValueAndValidity({onlySelf : true});
+    //   this.learnerForm.controls["batch"].setErrors(null);
+    //   this.learnerForm.controls["batch"].clearValidators();
+    //   this.learnerForm.controls["batch"].updateValueAndValidity({onlySelf : true});
+    //   this.dialogRef.close();
+    // }    
   }
 }
