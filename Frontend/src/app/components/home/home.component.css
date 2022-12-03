@@ -1,30 +1,19 @@
-
 mat-sidenav{
   width: 225px;
   border-right: none;
   background: #244e6e ;
-  color: white;
-  
-  
+  color: white;  
 }
 
 .content{
-    height: calc(100vh - 80px);
-    margin: 8px;
-    /* margin-left: 15px; */
-    /* display: flex; */
-    /* justify-content: center; */
-    /* align-items: center; */
-
-    font-size: 2rem;
-    color: lightgray;
-    overflow: auto;
-    border-radius: 10px;
+  margin: 8px;
+  font-size: 2rem;
+  color: rgb(211, 211, 211);
+  border-radius: 10px;
 }
 
 mat-sidenav-container{
-    height: calc(100vh - 65px);
-
+  height: 100vh;
 }
 
 .menu-button{
@@ -44,7 +33,6 @@ mat-toolbar {
   top: 0;
   z-index: 100;
 }
-
 
 .logo{
   height: 100px;
@@ -83,8 +71,8 @@ button {
 ::ng-deep .mat-menu-content {
     width: 180px;
   }
-
- .footer{
+  
+.footer{
   position: absolute;
   width: 100%;
   color: #fff;
@@ -92,4 +80,4 @@ button {
   font-size: 0.8rem;
   text-align: center;
   bottom: 5px;;
- } 
+ }
