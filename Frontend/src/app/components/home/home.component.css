@@ -18,7 +18,7 @@ mat-sidenav{
 
     font-size: 2rem;
     color: lightgray;
-
+    overflow: auto;
     border-radius: 10px;
 }
 
