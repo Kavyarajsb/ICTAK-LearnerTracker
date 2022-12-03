@@ -1,4 +1,4 @@
-.full-width{
+/* .full-width{
     width: 100%;
 }
 
@@ -12,4 +12,19 @@
 
 .form-container{
     margin: 100px;
-}
+} */
+
+.member-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .member-container > * {
+    width: 100%;
+  }
+
+  .mat-raised-button {
+    background-color: gray !important;
+    color: white;
+    width: 100%;
+  }

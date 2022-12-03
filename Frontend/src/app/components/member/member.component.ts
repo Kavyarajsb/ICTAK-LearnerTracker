@@ -1,10 +1,14 @@
-import { Component, OnInit,ViewChild,AfterViewInit } from '@angular/core';
+import { Component, OnInit,  ViewChild, AfterViewInit } from '@angular/core';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import { AddNewMemberComponent } from '../add-new-member/add-new-member.component';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatDialog } from '@angular/material/dialog';
+
 
 
 @Component({
@@ -17,46 +21,78 @@ export class MemberComponent implements OnInit,AfterViewInit {
   @ViewChild(MatSort) sort:any = MatSort;
   @ViewChild(MatPaginator) paginator:any = MatPaginator;
   public members = new MatTableDataSource<MemberData>();
-  
-  
-  constructor(private router:Router,private api:ApiService,private dialog:MatDialog) { }
-  //members:any=[]
+
+  constructor(private router:Router,private api:ApiService,private dialog: MatDialog) { }
+
   id: any;  
-  displayedColumns: string[] = ['name','email', 'role','update', 'delete'];
+  displayedColumns: string[] = ['no','name','email', 'role','update', 'delete'];
   
-
-
   ngOnInit(): void {
    this.getData();
-    
-
       }
-       // for filtering the list based on entered value from keyup
-  applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); 
-    filterValue = filterValue.toLowerCase(); 
-    this.members.filter = filterValue;
-  }
-//used for sort
-ngAfterViewInit(): void {
-  this.members.sort = this.sort;
-  this.members.paginator = this.paginator;
-}
 
-  
+      applyFilter(filterValue: string) {
+        filterValue = filterValue.trim(); 
+        filterValue = filterValue.toLowerCase(); 
+        this.members.filter = filterValue;
+      }
+
+      ngAfterViewInit(): void {
+        this.members.sort = this.sort;
+        this.members.paginator = this.paginator;
+      }
+
       getData(){
         this.api.getMemberList().subscribe(res=>{
-          this.members.data=res as MemberData[];
-          console.log(res);
-        })  ;
+        this.members.data = res as MemberData[];
+        })  
       }
-  
 
-  addnew(){
-    console.log("addnewmember")
-  this.router.navigate(["/addnewmember"])
+      updateData(id:any){
+        const dialogConfig = new MatDialogConfig();
+        dialogConfig.disableClose = true;
+        dialogConfig.autoFocus = true;
+        dialogConfig.width = "500px";
+  
+        dialogConfig.data = {
+          titlemode: 'Edit Staff Details',
+          id: id
+        };
+
+        const dialogRef = this.dialog.open(AddNewMemberComponent, dialogConfig);
+        dialogRef.afterClosed().subscribe(
+        data => {
+          this.api.updateMemberDetails(data).subscribe(res =>{
+            console.log('Member updated successfully');
+            this.getData();
+          })
+        }
+      )
+      }    
+    
+      addnew(){
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.disableClose = true;
+      dialogConfig.autoFocus = true;
+      dialogConfig.width = "500px";
+
+      dialogConfig.data = {
+      titlemode: 'Add Staff Details',
+      id:''
+      };
+  
+      const dialogRef = this.dialog.open(AddNewMemberComponent, dialogConfig);
+    
+      dialogRef.afterClosed().subscribe(
+      data => {
+        this.api.addNewMember(data).subscribe(res =>{
+          console.log('Member added successfully');
+          this.getData();
+        })
+      }
+    ); 
   }
-  // delete member
+
   deleteData(id:any){
     this.api.deleteMemberDetails(id).subscribe(res =>{
       this.getData();
@@ -64,10 +100,14 @@ ngAfterViewInit(): void {
   }
 
 }
-// This is used for filter and sort 
+
 export interface MemberData {
   _id: any;
   name: String;
   email: String;
+  password: String;
   role: String;  
 }
+
+
+

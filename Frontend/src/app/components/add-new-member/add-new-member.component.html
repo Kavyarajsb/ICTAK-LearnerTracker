@@ -1,33 +1,35 @@
-<form [formGroup]="newMemberForm" class="form-container">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Add New Member</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <div class="row">
-          <!-- <div class="col-md-6"> -->
-            <mat-form-field class="full-width">
-              <input formControlName="name" matInput placeholder="Name">
-            </mat-form-field>
-          <!-- </div> -->
-          <!-- <div class="col-md-6"> -->
-            <mat-form-field class="full-width">
-              <input  formControlName="email" matInput placeholder="Email">
-            </mat-form-field>
-          </div>
-        <!-- </div> -->
-        <mat-form-field class="full-width">
-            <input  formControlName="password" matInput placeholder="password" matNativeControl="password">
-          </mat-form-field>
-          <mat-form-field class="full-width">
-            <input  formControlName="role" matInput placeholder="role">
-          </mat-form-field>
+<h2 mat-dialog-title>{{titlemode}}
+    <button mat-icon-button (click)="close()" style="float:right ; " >
+        <mat-icon>close</mat-icon>         
+    </button>
+    </h2>
+    <mat-divider></mat-divider>
     
-        
-      </mat-card-content>
-      <mat-card-actions>
-        <button (click)="saveForm()" mat-raised-button color="primary">Save</button>
-      </mat-card-actions>
-    </mat-card>
-  </form>
 
+  <mat-dialog-content [formGroup]="newMemberForm">
+    <div class="member-container mt-3">
+            <input type="hidden" formControlName="_id">
+            <mat-form-field>
+                <input matInput placeholder="Name" formControlName="name">
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput placeholder="Email" formControlName="email">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Password" formControlName="password">
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-select placeholder="Role" formControlName="role">
+                    <mat-option value="Admin">Admin</mat-option>
+                    <mat-option value="Training Head">Training Head</mat-option> 
+                    <mat-option value="Placement Officer">Placement Officer</mat-option>     
+                </mat-select>
+            </mat-form-field>    
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+   <button class="mat-raised-button" (click)="saveForm()" [disabled]="!newMemberForm.valid">SAVE</button>
+</mat-dialog-actions>

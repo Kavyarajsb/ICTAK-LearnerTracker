@@ -12,9 +12,8 @@ export class LoginComponent implements OnInit {
   constructor(private auth:AuthService,private router:Router) { }
 
   ngOnInit(): void {
-    let intro = document.querySelector<HTMLElement>('.intro')
-    let logo = document.querySelector('.logo-header')
-    let loginClick = document.querySelector('.login-click')
+    let loginClick = document.querySelector('.loginClick')
+    let desc = document.querySelector('.desc')
     let logoSpan = document.querySelectorAll('.logo')
     window.addEventListener('DOMContentLoaded',()=>{
       setTimeout(()=>{
@@ -25,6 +24,9 @@ export class LoginComponent implements OnInit {
       })
       setTimeout(()=>{
         loginClick!.classList.add('active')
+    },1500)
+      setTimeout(()=>{
+        desc!.classList.add('active')
     },1500)
       // setTimeout(()=>{
       //   logoSpan.forEach((span,idx)=>{

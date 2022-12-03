@@ -1,0 +1,17 @@
+mat-toolbar {
+    justify-content: space-between;
+}
+
+.content-dash {
+    padding: 36px;
+    
+}
+
+.content-dash mat-card {
+    margin-bottom: 16px;
+}
+
+mat-card-content{
+    font-size: 16px;
+}
+

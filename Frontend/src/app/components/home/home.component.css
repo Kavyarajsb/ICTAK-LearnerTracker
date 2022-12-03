@@ -1,17 +1,11 @@
-mat-toolbar {
-    background-color: rgb(64, 60, 60);
-    color: white;
-}
 
 mat-sidenav{
-    /* margin: 16px; */
-    width: 200px;
-    border-right: none;
-    background: rgb(64, 60, 60) ;
-    color: white;
-    /* border-radius: 10px; */
-    padding: 16px;
-    text-align: center;
+  width: 225px;
+  border-right: none;
+  background: #244e6e ;
+  color: white;
+  
+  
 }
 
 .content{
@@ -24,60 +18,78 @@ mat-sidenav{
 
     font-size: 2rem;
     color: lightgray;
-    overflow: auto;
+
     border-radius: 10px;
 }
 
 mat-sidenav-container{
-    height: calc(100vh - 65px);    
+    height: calc(100vh - 65px);
 
 }
 
 .menu-button{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    font-size: 1rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1rem;
 }
 
 mat-icon{
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 mat-toolbar {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
 
-/* account */
 
 .logo{
-    width: 4vw;
-    height: 8vh;
+  height: 100px;
+  padding-top: 30px;
+  padding-left: 75px;
+  margin-bottom: 15px;
 }
-  
-  ul  li {
-      list-style: none;
-    }
-  
-  button {
-    outline: none;
-    border: 0;
-    background: transparent;
+
+.cap{
+font-size: 21px;
+color: white;
+font-weight: 500;
+padding-left: 17px;
+margin-bottom: 25px;
+}
+
+ul  li {
+    list-style: none;
   }
-  .user {
-    font-size: 14px;
-  }
-  
+
+button {
+  outline: none;
+  border: 0;
+  background: transparent;
+}
+.user {
+  font-size: 14px;
+}
+
 .icon {
-      height: 18px;
-      font-size: 16px;
-    }
-  
-  
-  ::ng-deep .mat-menu-content {
-      width: 180px;
-    }
-  
+    height: 18px;
+    font-size: 16px;
+  }
+
+
+::ng-deep .mat-menu-content {
+    width: 180px;
+  }
+
+ .footer{
+  position: absolute;
+  width: 100%;
+  color: #fff;
+  line-height: 20px;
+  font-size: 0.8rem;
+  text-align: center;
+  bottom: 5px;;
+ } 

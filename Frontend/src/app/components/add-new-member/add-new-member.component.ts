@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { Component, OnInit, Inject } from '@angular/core';
+import { FormBuilder,FormGroup, FormControl, Validators  } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
+import { MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-add-new-member',
@@ -10,28 +11,50 @@ import { ApiService } from 'src/app/api.service';
 })
 export class AddNewMemberComponent implements OnInit {
 
-  constructor(private formBuilder:FormBuilder,private api:ApiService,private router:Router) { }
+
+  newMemberForm = new FormGroup({
+    'name': new FormControl('', [Validators.required]),
+    'email' : new FormControl('',[Validators.required]),
+    'password': new FormControl('',[Validators.required]),
+    'role': new FormControl('',[Validators.required]),
+    '_id': new FormControl('')
+  });
+
+  titlemode:String ="";
+  id:String="";
+
+  constructor(private formBuilder:FormBuilder,private api:ApiService,private router:Router,
+    private dialogRef : MatDialogRef<AddNewMemberComponent>,
+    @Inject(MAT_DIALOG_DATA) data:any) {
+      this.titlemode = data.titlemode;
+      this.id = data.id;
+    }
 
   ngOnInit(): void {
+
+
+    if(this.id != ""){
+      this.api.getMemberDetails(this.id).subscribe(res => {
+        this.newMemberForm.patchValue(res);      
+      })
+    }
+    }
+    
+    saveForm() {
+    this.dialogRef.close(this.newMemberForm.value);
+    }
+    
+    close() {
+      this.dialogRef.close();
+    }
   }
 
-newMemberForm=this.formBuilder.group({
-  name:[''],
-  email:[''],
-  password:[''],
-  role:['']
-  
-})
+
+
+
  
-saveForm(){
-  console.log('Form data is ', this.newMemberForm.value);
-  this.api.addNewMember(this.newMemberForm.value).subscribe({
-    complete:()=>{
-  alert('New Member Added Successfully')
-  this.router.navigate(["/member"]);
-    }
-  })
 
-}
 
-}
+
+
+
