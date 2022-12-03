@@ -84,14 +84,15 @@ exports.deleteStaff= async(req,res)=>{
 exports.login=(req,res)=>{
     let userData=req.body;
     var flag=false;
+    var userrole="";
+    var username="";
 
     staffInfo.find().then(function(user){
-        console.log("user",user);
-        
         for(let i=0;i<user.length;i++){
             if(userData.email==user[i].email && userData.password==user[i].password){
-                console.log("found user",user[0].email);
-
+                console.log("found user",user[i].email);
+                userrole = user[i].role;
+                username = user[i].name;
                 flag=true;
                 break;
             }else{
@@ -101,7 +102,7 @@ exports.login=(req,res)=>{
         if(flag==true){
             let payload={subject:userData.email+userData.password}
             let token =jwt.sign(payload,"secretKey");
-            res.status(200).send({token});
+            res.status(200).send({token,username,userrole});
             }
             else{
                 res.status(401).send("invalid credentials")

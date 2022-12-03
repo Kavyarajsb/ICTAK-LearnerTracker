@@ -23,11 +23,37 @@ export class LearnerComponent implements OnInit, AfterViewInit {
     private api : ApiService, 
     private dialog: MatDialog) { }
 
+  userrole = localStorage.getItem('userrole');  
+  isAdmin:boolean = false;
+  isTH:boolean = false;
+  isPO:boolean = false;
   id: any;  
-  displayedColumns: string[] = ['no','learnerid', 'name', 'course', 'project', 'batch', 'update', 'delete'];
-  
+  displayedColumns: string[] = ['no','learnerid', 'name', 'course', 'project', 'batch','update', 'delete'];
+
   ngOnInit(): void {
-    this.getData();
+    if(this.userrole) {
+      if(this.userrole === "Admin"){
+        this.isAdmin = true;
+        this.logout();
+      }
+      else if(this.userrole === "Training Head"){
+        this.isTH = true;
+        this.getData();         
+      }
+      else if(this.userrole === "Placement Officer"){
+        this.isPO = true;
+        this.displayedColumns = ['no','learnerid', 'name', 'course', 'project', 'placementstatus', 'update'];
+        this.getData(); 
+      }          
+    }
+    else {
+      this.router.navigate(['']);
+    }    
+  }
+
+  logout(){
+    localStorage.clear();
+    this.router.navigate(['']);
   }
 
   // used for sort

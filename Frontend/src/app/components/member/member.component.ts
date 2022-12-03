@@ -1,6 +1,4 @@
 import { Component, OnInit,ViewChild,AfterViewInit } from '@angular/core';
-import {MatTableModule} from '@angular/material/table';
-import {MatPaginatorModule} from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
 import { MatTableDataSource } from '@angular/material/table';
@@ -68,9 +66,8 @@ ngAfterViewInit(): void {
 }
 // This is used for filter and sort 
 export interface MemberData {
-  
+  _id: any;
   name: String;
   email: String;
-  role: String;
-  
+  role: String;  
 }

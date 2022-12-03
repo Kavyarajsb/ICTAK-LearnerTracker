@@ -12,9 +12,8 @@
         <!-- <img src="./assets/logo.png" alt="" class="logo"/> -->
         <div>
             <button mat-dialog-actions mat-button [mat-menu-trigger-for]="menu" class="user mt-2 d-flex align-right">
-                        
                 <mat-icon>account_circle</mat-icon>
-                Admin
+                {{username}}
                 <mat-icon>keyboard_arrow_down</mat-icon>
             </button>
                 <mat-menu #menu="matMenu">
@@ -22,7 +21,7 @@
                     <mat-icon>person</mat-icon>
                     Profile
                   </button>
-                  <button mat-menu-item>
+                  <button mat-menu-item (click)="logout()">
                     <mat-icon>exit_to_app</mat-icon>
                     Logout
                   </button>
@@ -37,11 +36,11 @@
             <mat-icon>home</mat-icon>
             <span routerLink="dashboard">Dashboard</span>
         </button>
-        <button mat-button class="menu-button">
+        <button mat-button class="menu-button" *ngIf="isAdmin">
             <mat-icon>people</mat-icon>
             <span routerLink="member">Member</span>
         </button>
-        <button mat-button class="menu-button">
+        <button mat-button class="menu-button" *ngIf="!isAdmin">
             <mat-icon>device_hub</mat-icon>
             <span routerLink="learner">Learners</span>
         </button>

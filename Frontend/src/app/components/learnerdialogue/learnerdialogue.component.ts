@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import { ApiService } from 'src/app/api.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,6 +11,10 @@ import { ApiService } from 'src/app/api.service';
   styleUrls: ['./learnerdialogue.component.css']
 })
 export class LearnerdialogueComponent implements OnInit {
+
+  userrole = localStorage.getItem('userrole');  
+  isTH:boolean = false;
+  isPO:boolean = false;
 
   learnerForm = new FormGroup({
     'learnerid': new FormControl('', [Validators.required]),
@@ -23,9 +28,9 @@ export class LearnerdialogueComponent implements OnInit {
   });
 
   titlemode:String ="";
-  id:String="";
+  id:any;
 
-  constructor(private api:ApiService, 
+  constructor(private api:ApiService, private router : Router,
     private dialogRef : MatDialogRef<LearnerdialogueComponent>,
     @Inject(MAT_DIALOG_DATA) data:any) {
       this.titlemode = data.titlemode;
@@ -33,11 +38,41 @@ export class LearnerdialogueComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    if(this.id != ""){
+    if(this.userrole) {
+      if(this.userrole === "Training Head"){
+        this.isTH = true; 
+        this.learnerForm.get('learnerid')?.enable(); 
+        this.learnerForm.get('name')?.enable(); 
+        this.learnerForm.get('course')?.enable(); 
+        this.learnerForm.get('project')?.enable();  
+        this.learnerForm.get('batch')?.enable();  
+        this.learnerForm.get('coursestatus')?.enable();          
+      }
+      else if(this.userrole === "Placement Officer"){
+        this.isPO = true;
+        this.learnerForm.get('learnerid')?.disable(); 
+        this.learnerForm.get('name')?.disable(); 
+        this.learnerForm.get('course')?.disable(); 
+        this.learnerForm.get('project')?.disable();  
+        this.learnerForm.get('batch')?.disable();  
+        this.learnerForm.get('coursestatus')?.disable(); 
+      }          
+    }   
+    else{
+      this.logout();
+    }    
+  
+    if(this.id){
+      console.log(this.id);
       this.api.getLearnerDetails(this.id).subscribe(res => {
         this.learnerForm.patchValue(res);      
       })
     }
+  }
+
+  logout(){
+    localStorage.clear();
+    this.router.navigate(['']);
   }
 
   save() {

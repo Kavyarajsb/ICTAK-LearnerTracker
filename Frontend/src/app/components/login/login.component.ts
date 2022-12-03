@@ -50,8 +50,11 @@ export class LoginComponent implements OnInit {
    
       console.log('data from backend',res);
   
-      localStorage.setItem('token',res.token)
-    this.router.navigateByUrl('home');
+      localStorage.setItem('token',res.token);
+      localStorage.setItem('userrole',res.userrole);
+      localStorage.setItem('username', res.username);
+      
+      this.router.navigateByUrl('home');
   })
     }
 

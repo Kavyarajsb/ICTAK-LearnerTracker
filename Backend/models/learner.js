@@ -22,8 +22,7 @@ const learnerSchema = new mongoose.Schema({
         required: true
     },
     coursestatus:{
-        type: String,
-        required: true
+        type: String
     },
     placementstatus:{
         type: String

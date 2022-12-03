@@ -15,7 +15,7 @@ exports.getAllLearners= async(req,res)=>{
 exports.getOneLearner=async(req,res)=>{
     try {
         let id = req.params.id;
-        let learner = await learnerInfo.findById(id);
+        let learner = await learnerInfo.findById({'_id': id});
         res.send(learner);
     }
     catch(error) {
@@ -35,7 +35,7 @@ exports.addLearner= async(req,res)=>{
                 project: req.body.project,
                 batch : req.body.batch,
                 coursestatus: req.body.coursestatus,
-                placementstatus: req.body.projectstatus
+                placementstatus: req.body.placementstatus
             }
 
             let learner = new learnerInfo(learnernew);
@@ -58,7 +58,7 @@ exports.updateLearner= async(req, res) => {
             project: req.body.project,
             batch : req.body.batch,
             coursestatus: req.body.coursestatus,
-            placementstatus: req.body.projectstatus
+            placementstatus: req.body.placementstatus
         }
         let updateLearner = { $set: learner };
         let updateInfo = await learnerInfo.findByIdAndUpdate({'_id': id }, updateLearner);
@@ -78,4 +78,8 @@ exports.deleteLearner= async(req,res)=>{
     catch(error) {
         console.log(error);   
     }
+}
+
+// add csv fileinfo
+exports.addCSVLearners = async(req,res)=>{
 }

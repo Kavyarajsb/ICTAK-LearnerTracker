@@ -8,16 +8,24 @@
 <mat-dialog-content [formGroup]="learnerForm">
     <div class="learner-container mt-3">
             <input type="hidden" formControlName="_id">
+            <mat-form-field *ngIf="isPO">
+                <mat-select placeholder="Placement Status" formControlName="placementstatus">
+                    <mat-option value="Placed">Placed</mat-option>
+                    <mat-option value="Job Seeking">Job Seeking</mat-option>
+                    <mat-option value="NOT Interested">NOT Interested</mat-option>  
+                </mat-select>
+            </mat-form-field> 
+
             <mat-form-field>
-                <input matInput placeholder="Learner ID" formControlName="learnerid">
+                <input matInput placeholder="Learner ID" formControlName="learnerid" >
             </mat-form-field>
 
             <mat-form-field>
-                <input matInput placeholder="Name" formControlName="name">
+                <input matInput placeholder="Name" formControlName="name" >
             </mat-form-field>
 
             <mat-form-field>
-                <mat-select placeholder="Course" formControlName="course">
+                <mat-select placeholder="Course" formControlName="course" >
                     <mat-option value="FSD">FSD</mat-option>
                     <mat-option value="DSA">DSA</mat-option> 
                     <mat-option value="ML-AI">ML-AI</mat-option>     
@@ -28,7 +36,7 @@
             </mat-form-field>
 
             <mat-form-field>
-                <mat-select placeholder="Project" formControlName="project">
+                <mat-select placeholder="Project" formControlName="project" >
                     <mat-option value="ICTAK">ICTAK</mat-option>
                     <mat-option value="KKEM">KKEM</mat-option> 
                     <mat-option value="NORKA">NORKA</mat-option>     
@@ -38,7 +46,7 @@
             </mat-form-field>
 
             <mat-form-field>
-                <mat-select placeholder="Batch" formControlName="batch">
+                <mat-select placeholder="Batch" formControlName="batch" >
                     <mat-option value="May_22">May_22</mat-option>
                     <mat-option value="Jun_22">Jun_22</mat-option> 
                     <mat-option value="Jul_22">Jul_22</mat-option>     
@@ -46,20 +54,12 @@
                 </mat-select>
             </mat-form-field>
 
-            <mat-form-field>
-                <mat-select placeholder="Course Status" formControlName="coursestatus">
+            <mat-form-field >
+                <mat-select placeholder="Course Status" formControlName="coursestatus" >
                     <mat-option value="Qualified">Qualified</mat-option>
                     <mat-option value="Incompetent">Incompetent</mat-option>   
                 </mat-select>
-            </mat-form-field>
-
-            <mat-form-field>
-                <mat-select placeholder="Placement Status" formControlName="placementstatus">
-                    <mat-option value="Placed">Placed</mat-option>
-                    <mat-option value="Job Seeking">Job Seeking</mat-option>
-                    <mat-option value="NOT Interested">NOT Interested</mat-option>  
-                </mat-select>
-            </mat-form-field>     
+            </mat-form-field>                
     </div>
 </mat-dialog-content>
 
