@@ -21,11 +21,35 @@ export class MemberComponent implements OnInit, AfterViewInit {
 
   constructor(private router: Router, private api: ApiService, private dialog: MatDialog) { }
 
+  userrole = localStorage.getItem('userrole');  
+  isAdmin:boolean = false;
+  isTH:boolean = false;
+  isPO:boolean = false;
+
   id: any;
   displayedColumns: string[] = ['no', 'name', 'email', 'role', 'update', 'delete'];
 
   ngOnInit(): void {
-    this.getData();
+    if(this.userrole) {
+      if(this.userrole === "Admin"){
+        this.isAdmin = true;
+        this.getData();
+      }
+      else {
+        this.logout();
+      }          
+    }
+    else {
+      this.logout();
+    }   
+  }
+
+  logout(){
+    localStorage.clear();
+    this.router.navigate([''])
+    .then(() => {
+      window.location.reload();
+    });
   }
 
   applyFilter(filterValue: string) {
