@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./learnerdialogue.component.css']
 })
 export class LearnerdialogueComponent implements OnInit {
-
+  
   userrole = localStorage.getItem('userrole');  
   isTH:boolean = false;
   isPO:boolean = false;
@@ -39,6 +39,7 @@ export class LearnerdialogueComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.userrole) {
+      // add form - enable controls for Training head
       if(this.userrole === "Training Head"){
         this.isTH = true; 
         this.learnerForm.get('learnerid')?.enable(); 
@@ -48,7 +49,7 @@ export class LearnerdialogueComponent implements OnInit {
         this.learnerForm.get('batch')?.enable();  
         this.learnerForm.get('coursestatus')?.enable();          
       }
-      else if(this.userrole === "Placement Officer"){
+      else if(this.userrole === "Placement Officer"){ // disable controls for Placement Officer
         this.isPO = true;
         this.learnerForm.get('learnerid')?.disable(); 
         this.learnerForm.get('name')?.disable(); 
@@ -61,7 +62,7 @@ export class LearnerdialogueComponent implements OnInit {
     else{
       this.logout();
     }    
-  
+    // get the learner details for edit 
     if(this.id){
       console.log(this.id);
       this.api.getLearnerDetails(this.id).subscribe(res => {
@@ -69,7 +70,8 @@ export class LearnerdialogueComponent implements OnInit {
       })
     }
   }
-
+  
+  // logout
   logout(){
     localStorage.clear();
     this.router.navigate([''])
@@ -78,30 +80,13 @@ export class LearnerdialogueComponent implements OnInit {
     });
   }
 
+  // pass the dialogue form values to parent where this popup is called
   save() {
     this.dialogRef.close(this.learnerForm.value);
   }
 
+  //close dialogue form
   close() {
-    this.dialogRef.close();
-    // if (!this.learnerForm.touched && !this.learnerForm.dirty) {
-    //   console.log("hi, inside close");
-    //   this.learnerForm.controls["learnerid"].setErrors(null);
-    //   this.learnerForm.controls["learnerid"].clearValidators();
-    //   this.learnerForm.controls["learnerid"].updateValueAndValidity({onlySelf : true});
-    //   this.learnerForm.controls["name"].setErrors(null);
-    //   this.learnerForm.controls["name"].clearValidators();
-    //   this.learnerForm.controls["name"].updateValueAndValidity({onlySelf : true});
-    //   this.learnerForm.controls["course"].setErrors(null);
-    //   this.learnerForm.controls["course"].clearValidators();
-    //   this.learnerForm.controls["course"].updateValueAndValidity({onlySelf : true});
-    //   this.learnerForm.controls["project"].setErrors(null);
-    //   this.learnerForm.controls["project"].clearValidators();
-    //   this.learnerForm.controls["project"].updateValueAndValidity({onlySelf : true});
-    //   this.learnerForm.controls["batch"].setErrors(null);
-    //   this.learnerForm.controls["batch"].clearValidators();
-    //   this.learnerForm.controls["batch"].updateValueAndValidity({onlySelf : true});
-    //   this.dialogRef.close();
-    // }    
+    this.dialogRef.close();    
   }
 }

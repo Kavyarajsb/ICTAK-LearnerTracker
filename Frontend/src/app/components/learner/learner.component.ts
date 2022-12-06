@@ -31,9 +31,11 @@ export class LearnerComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['no','learnerid', 'name', 'course', 'project', 'batch','update', 'delete'];
 
   ngOnInit(): void {
+    //user role checking
     if(this.userrole) {
       if(this.userrole === "Admin"){
         this.isAdmin = true;
+        alert('Unauthorized access to learner');
         this.logout();
       }
       else if(this.userrole === "Training Head"){
@@ -51,10 +53,12 @@ export class LearnerComponent implements OnInit, AfterViewInit {
     }    
   }
 
+  //logout
   logout(){
     localStorage.clear();
+    alert('You have logged out successfully');
     this.router.navigate([''])
-    .then(() => {
+    .then(() => {      
       window.location.reload();
     });
   }
@@ -96,13 +100,13 @@ export class LearnerComponent implements OnInit, AfterViewInit {
       // save data to db after clicking SAVE from dialog popup
       dialogRef.afterClosed().subscribe(
         data => {
-          if(data){
+          if(data){ // if save button clicked
             this.api.updateLearnerDetails(data).subscribe(res =>{
-              console.log('Learner updated successfully');
+              alert('Learner updated successfully');
               this.getData();
             })
           }
-          else {
+          else {  // if close button clicked
             console.log("close without validation on edit learner");
           }          
         }
@@ -112,6 +116,7 @@ export class LearnerComponent implements OnInit, AfterViewInit {
   // delete learner
   deleteData(id:any){
     this.api.deleteLearnerDetails(id).subscribe(res =>{
+      alert('Learner deleted successfully');
       this.getData();
     })
   }
@@ -130,15 +135,17 @@ export class LearnerComponent implements OnInit, AfterViewInit {
   
     const dialogRef = this.dialog.open(LearnerdialogueComponent, dialogConfig);
     
+    // call below event once the dialog popup closed
     dialogRef.afterClosed().subscribe(
       data => {
+        // if save clicked
         if(data){
           this.api.addNewLearner(data).subscribe(res =>{
-            console.log('Learner added successfully');
+            alert('Learner added successfully');
             this.getData();
           })
         }
-        else {
+        else { // if close button clicked
           console.log("close without validation on add learner");
         }        
       }
