@@ -7,7 +7,7 @@
     </mat-icon>
 </button>
 <mat-sidenav-container>
-    <mat-sidenav #sidenav="matSidenav">
+    <mat-sidenav #sidenav="matSidenav" [style.background-color]="bgcolor">
         <div>
             <img src="./assets/logo.png" alt="" class="logo"/>
             <p class="cap">LEARNER TRACKER</p>
@@ -33,8 +33,7 @@
     <!-- content -->
     
     <mat-sidenav-content>
-        <button mat-dialog-actions mat-button [mat-menu-trigger-for]="menu" class="user mt-2 d-flex" style="float:right ;">
-                    
+        <button mat-dialog-actions mat-button [mat-menu-trigger-for]="menu" class="user m-2 d-flex" style="float:right ;" [style.background-color]="bgprofile">
             <mat-icon>account_circle</mat-icon>
             {{username}}
             <mat-icon>keyboard_arrow_down</mat-icon>

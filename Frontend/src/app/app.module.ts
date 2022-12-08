@@ -30,8 +30,8 @@ import { AuthService } from './auth.service';
 import { ApiService } from './api.service';
 import { TokenInterceptorService } from './token-interceptor.service';
 import { LearnerdialogueComponent } from './components/learnerdialogue/learnerdialogue.component';
-
-
+import { LearneruploaddialogueComponent } from './components/learneruploaddialogue/learneruploaddialogue.component';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -43,7 +43,8 @@ import { LearnerdialogueComponent } from './components/learnerdialogue/learnerdi
     AddNewMemberComponent,
     LoginComponent,
     LearnerComponent,
-    LearnerdialogueComponent
+    LearnerdialogueComponent,
+    LearneruploaddialogueComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +68,8 @@ import { LearnerdialogueComponent } from './components/learnerdialogue/learnerdi
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    ToastrModule.forRoot()
   ],
   providers: [AuthService, ApiService,
     {

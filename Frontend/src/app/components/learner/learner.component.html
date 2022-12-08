@@ -1,6 +1,6 @@
 <div class="container">
 
-<div class="row">
+<div class="row" >
   <div class="col-sm-1 searchicon">
     <button mat-icon-button>
       <mat-icon>search</mat-icon>
@@ -12,7 +12,7 @@
     </mat-form-field>
   </div>
   <div class="col-sm-4 ">
-    <button mat-raised-button style="float:right; margin-top:2vh;"  color="warn" *ngIf="isTH">
+    <button mat-raised-button style="float:right; margin-top:2vh;" (click)="showUploadCSV()"  color="warn" *ngIf="isTH">
       <mat-icon>file_upload</mat-icon>
        Upload        
     </button>

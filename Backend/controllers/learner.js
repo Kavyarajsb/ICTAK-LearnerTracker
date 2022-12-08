@@ -1,4 +1,4 @@
-const learnerInfo = require('../models/learner')
+const learnerInfo = require('../models/learner');
 
 //read learner list 
 exports.getAllLearners= async(req,res)=>{
@@ -80,6 +80,3 @@ exports.deleteLearner= async(req,res)=>{
     }
 }
 
-// add csv fileinfo
-exports.addCSVLearners = async(req,res)=>{
-}

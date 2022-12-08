@@ -6,7 +6,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { LearnerdialogueComponent } from '../learnerdialogue/learnerdialogue.component';
-
+import { LearneruploaddialogueComponent } from '../learneruploaddialogue/learneruploaddialogue.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-learner',
@@ -21,7 +22,8 @@ export class LearnerComponent implements OnInit, AfterViewInit {
 
   constructor(private router: Router, 
     private api : ApiService, 
-    private dialog: MatDialog) { }
+    private dialog: MatDialog,
+    private toastr : ToastrService) { }
 
   userrole = localStorage.getItem('userrole');  
   isAdmin:boolean = false;
@@ -102,13 +104,17 @@ export class LearnerComponent implements OnInit, AfterViewInit {
         data => {
           if(data){ // if save button clicked
             this.api.updateLearnerDetails(data).subscribe(res =>{
-              alert('Learner updated successfully');
+              this.toastr.success('Learner updated successfully','',{timeOut:2000});
+              //alert('Learner updated successfully');
               this.getData();
             })
           }
           else {  // if close button clicked
             console.log("close without validation on edit learner");
           }          
+        },
+        error => {
+          alert(error);
         }
       );    
   }
@@ -116,7 +122,8 @@ export class LearnerComponent implements OnInit, AfterViewInit {
   // delete learner
   deleteData(id:any){
     this.api.deleteLearnerDetails(id).subscribe(res =>{
-      alert('Learner deleted successfully');
+      this.toastr.success('Learner deleted successfully','',{timeOut:2000});
+      //alert('Learner deleted successfully');
       this.getData();
     })
   }
@@ -141,15 +148,48 @@ export class LearnerComponent implements OnInit, AfterViewInit {
         // if save clicked
         if(data){
           this.api.addNewLearner(data).subscribe(res =>{
-            alert('Learner added successfully');
+            //alert('Learner added successfully');
+            this.toastr.success('Learner added successfully','',{timeOut:2000});
             this.getData();
           })
         }
         else { // if close button clicked
           console.log("close without validation on add learner");
         }        
+      },
+      error => {
+        console.log(error);
       }
     ); 
+  }
+
+  showUploadCSV() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "500px";
+
+    const dialogRef = this.dialog.open(LearneruploaddialogueComponent, dialogConfig);
+  
+    // call below event once the dialog popup closed
+    dialogRef.afterClosed().subscribe(
+      data => {
+        // if save clicked
+        if(data){
+          this.api.uploadCSV(data).subscribe(res => {
+            //alert('Learner uploaded successfully');
+            this.toastr.success('Learner uploaded successfully','',{timeOut:2000});
+            //console.log(res);
+            this.getData();
+          });          
+        }
+        else { // if close button clicked
+          console.log("close without validation on add learner");
+        }        
+      }
+      
+    ); 
+
   }
 
 }

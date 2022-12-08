@@ -2,8 +2,7 @@ const mongoose = require('mongoose');
 const learnerSchema = new mongoose.Schema({
     learnerid:{
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     name:{
         type: String,

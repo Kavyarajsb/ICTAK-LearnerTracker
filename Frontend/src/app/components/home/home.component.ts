@@ -27,6 +27,8 @@ export class HomeComponent implements OnInit {
   isAdmin:boolean = false;
   isTH:boolean = false;
   isPO:boolean = false;
+  bgcolor:string = '#012f63';
+  bgprofile:string='';
   
 
   constructor(private observer: BreakpointObserver,
@@ -36,12 +38,17 @@ export class HomeComponent implements OnInit {
     if(this.userrole) {
       if(this.userrole === "Admin"){
         this.isAdmin = true;
+        this.bgprofile='#fe667b';
       }
       else if(this.userrole === "Training Head"){
         this.isTH = true;
+        this.bgcolor ='#7a8ca4';
+        this.bgprofile='#d2cede';
       }
       else if(this.userrole === "Placement Officer"){
         this.isPO = true;
+        this.bgcolor='#594f4f';
+        this.bgprofile='#45ada8';
       }      
     }
     else {
