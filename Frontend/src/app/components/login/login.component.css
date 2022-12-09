@@ -4,6 +4,19 @@
 	box-sizing: border-box;
 	font-family: "Courier", monospace;
 }
+nav {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 5%;
+	background-color: #D9DCD6;
+}
+  nav .brand{
+	
+    font-size: 30px;
+    font-weight: 700;
+  }
 
 header{
 	text-align: justify;
@@ -14,12 +27,10 @@ header{
 	width: 100%;
 	height: 80px;
 }
-img{
-	max-width: 150px;
-	position: absolute;
-	top: 20%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+.logoimg{
+	margin: 0;
+	padding: 0;
+	width: 60px;
 }
 header h4{
 	position: absolute;
@@ -30,7 +41,7 @@ header h4{
 
 /* Splash Screen */
 
-.intro{
+.intros{
 	position: fixed;
 	z-index: 1;
 	left: 0%;
@@ -42,10 +53,10 @@ header h4{
 }
 
 .logo-header{
-	position: absolute;
+	/* position: absolute;
 	top: 65%;
 	left: 50%;
-	transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%); */
 	color: #D9DCD6;
 }
 
@@ -60,8 +71,16 @@ header h4{
 	position: relative;
 	display: inline-block;
 	opacity: 0;
-	cursor: pointer;
 }
+.rows{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2% 5%;
+  }
+  .row .column1 {
+    padding-right: 50px;
+  }
 
 
 .logo.active{
@@ -73,18 +92,16 @@ header h4{
 	opacity: 1;
 	transition: ease-in-out 0.5s;
 }
-.logo.fade{
-	left: 0;
-	opacity: 0;
-	transition: ease-in-out 0.5s;
-}
+
 
 
 
 /* Login Form */
 .gradient-custom {
-	background: #D9DCD6
-	}
+	background-image: url(../../../assets/pattern.jpg);
+	height: 100vh;
+	/* overflow: none; */
+	background-size: cover;	}
 .card{
 	background-color: #2B2D42;
 	color: #D9DCD6;
