@@ -33,21 +33,29 @@
     <!-- content -->
     
     <mat-sidenav-content>
-        <button mat-dialog-actions mat-button [mat-menu-trigger-for]="menu" class="user m-2 d-flex" style="float:right ;" [style.background-color]="bgprofile">
-            <mat-icon>account_circle</mat-icon>
-            {{username}}
-            <mat-icon>keyboard_arrow_down</mat-icon>
-        </button>
-            <mat-menu #menu="matMenu">
-              <button mat-menu-item>
-                <mat-icon>person</mat-icon>
-                Profile
-              </button>
-              <button mat-menu-item (click)="logout()" routerLink="">
-                <mat-icon>exit_to_app</mat-icon>
-                Logout
-              </button>
-            </mat-menu>
+        <div class="container">
+            <div class="col-sm-12 col-md-8 col-lg-8">
+                <h4 class="username">Welcome {{username}}</h4>
+            </div>
+            <div class="col-sm-12 col-md-4 col-lg-4 m-2 d-flex user" style="float:right ;">
+                <button mat-dialog-actions mat-button [mat-menu-trigger-for]="menu"  >
+                    <mat-icon>account_circle</mat-icon>
+                    {{userrole}}
+                    <mat-icon>keyboard_arrow_down</mat-icon>
+                </button>
+                    <mat-menu #menu="matMenu">
+                      <button mat-menu-item>
+                        <mat-icon>person</mat-icon>
+                        Profile
+                      </button>
+                      <button mat-menu-item (click)="logout()" routerLink="">
+                        <mat-icon>exit_to_app</mat-icon>
+                        Logout
+                      </button>
+                    </mat-menu>
+            </div>
+        </div>
+        
         <div class="content" style="margin-top:15vh ;">
             <router-outlet></router-outlet>
         </div>

@@ -105,7 +105,6 @@ export class LearnerComponent implements OnInit, AfterViewInit {
           if(data){ // if save button clicked
             this.api.updateLearnerDetails(data).subscribe(res =>{
               this.toastr.success('Learner updated successfully','',{timeOut:2000});
-              //alert('Learner updated successfully');
               this.getData();
             })
           }
@@ -123,7 +122,6 @@ export class LearnerComponent implements OnInit, AfterViewInit {
   deleteData(id:any){
     this.api.deleteLearnerDetails(id).subscribe(res =>{
       this.toastr.success('Learner deleted successfully','',{timeOut:2000});
-      //alert('Learner deleted successfully');
       this.getData();
     })
   }
@@ -148,7 +146,6 @@ export class LearnerComponent implements OnInit, AfterViewInit {
         // if save clicked
         if(data){
           this.api.addNewLearner(data).subscribe(res =>{
-            //alert('Learner added successfully');
             this.toastr.success('Learner added successfully','',{timeOut:2000});
             this.getData();
           })
@@ -177,7 +174,6 @@ export class LearnerComponent implements OnInit, AfterViewInit {
         // if save clicked
         if(data){
           this.api.uploadCSV(data).subscribe(res => {
-            //alert('Learner uploaded successfully');
             this.toastr.success('Learner uploaded successfully','',{timeOut:2000});
             //console.log(res);
             this.getData();

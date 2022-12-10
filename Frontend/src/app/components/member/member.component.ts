@@ -6,6 +6,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddNewMemberComponent } from '../add-new-member/add-new-member.component';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class MemberComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: any = MatPaginator;
   public members = new MatTableDataSource<MemberData>();
 
-  constructor(private router: Router, private api: ApiService, private dialog: MatDialog) { }
+  constructor(private router: Router, private api: ApiService, private dialog: MatDialog, private toastr : ToastrService) { }
 
   userrole = localStorage.getItem('userrole');  
   isAdmin:boolean = false;
@@ -85,7 +86,7 @@ export class MemberComponent implements OnInit, AfterViewInit {
       data => {
         if(data){
           this.api.updateMemberDetails(data).subscribe(res => {
-            console.log('Member updated successfully');
+            this.toastr.success('Staff updated successfully','',{timeOut:2000});
             this.getData();
           })
         }        
@@ -113,7 +114,7 @@ export class MemberComponent implements OnInit, AfterViewInit {
       data => {
         if(data){
           this.api.addNewMember(data).subscribe(res => {
-            console.log('Member added successfully');
+            this.toastr.success('Staff added successfully','',{timeOut:2000});
             this.getData();
           })
         }
@@ -125,6 +126,7 @@ export class MemberComponent implements OnInit, AfterViewInit {
 
   deleteData(id: any) {
     this.api.deleteMemberDetails(id).subscribe(res => {
+      this.toastr.success('Staff deleted successfully','',{timeOut:2000});
       this.getData();
     });
   }
