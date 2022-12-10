@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   user={email:'',password:''};
-  constructor(private auth:AuthService,private router:Router) { }
+  constructor(private auth:AuthService,private router:Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     let loginClick = document.querySelector('.loginClick')
@@ -63,7 +64,7 @@ export class LoginComponent implements OnInit {
 
     slideUp(){
       console.log('sliding up')
-      let intro = document.querySelector<HTMLElement>('.intro')
+      let intro = document.querySelector<HTMLElement>('.intros')
       intro!.style.top= '-100vh'
     }
 }
