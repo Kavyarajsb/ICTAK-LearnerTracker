@@ -54,9 +54,11 @@ router.post('/uploadlearners',uploads.single('csv'), (req,res)=>{
                   
         learnerInfo.insertMany(learners, (err, data) => {
             if (err) {
-               res.send(err);
+                res.status(401).send("Duplicate entry error");
+               //res.send(err);
             } else {
-                res.send(data);
+               // res.send(data);
+              res.status(200).send({data});
             }
         });
     }).catch((error) => {

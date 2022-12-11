@@ -66,7 +66,8 @@ export class LearnerdialogueComponent implements OnInit {
     if(this.id){
       console.log(this.id);
       this.api.getLearnerDetails(this.id).subscribe(res => {
-        this.learnerForm.patchValue(res);      
+        this.learnerForm.patchValue(res);   
+        this.learnerForm.get('learnerid')?.disable();    
       })
     }
   }
