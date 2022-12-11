@@ -64,5 +64,5 @@
 </mat-dialog-content>
 
 <mat-dialog-actions>
-   <button class="mat-raised-button" (click)="save()" [disabled]="!learnerForm.valid">SAVE</button>
+   <button mat-raised-button (click)="save()" [disabled]="learnerForm.pristine || learnerForm.invalid">SAVE</button>
 </mat-dialog-actions>

@@ -45,19 +45,15 @@ export class LoginComponent implements OnInit {
   }
 
   login(form: any){
-
     console.log('........',this.user);
-   
-  
-    this.auth.loginToBackend(this.user).subscribe(res=>{
-   
-      console.log('data from backend',res);
-  
-      localStorage.setItem('token',res.token);
-      localStorage.setItem('userrole',res.userrole);
-      localStorage.setItem('username', res.username);
-      
-      this.router.navigateByUrl('home/dashboard');
+    
+    this.auth.loginToBackend(this.user).subscribe({
+      next: (res)=>{console.log('data from backend',res);
+          localStorage.setItem('token',res.token);
+          localStorage.setItem('userrole',res.userrole);
+          localStorage.setItem('username', res.username);},
+      error: (e) =>this.toastr.error("Wrong password","Validation Error:",{timeOut: 2000}),
+      complete: () => this.router.navigateByUrl('home/dashboard') 
   })
     }
 

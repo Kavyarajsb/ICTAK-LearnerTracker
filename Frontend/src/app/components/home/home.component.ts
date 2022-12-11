@@ -27,14 +27,18 @@ export class HomeComponent implements OnInit {
   isAdmin:boolean = false;
   isTH:boolean = false;
   isPO:boolean = false;
+  bgimg:string = "url('../../../assets/bluebg.jpg')";
   bgcolor:string = '#012f63';
+  shdwcolor:string = 'rgba(3, 118, 248, 1)';
   bgprofile:string='';
-  
+  styleex=""
+  stylebg=""
 
   constructor(private observer: BreakpointObserver,
     private router : Router) { }
 
   ngOnInit(){
+
     if(this.userrole) {
       if(this.userrole === "Admin"){
         this.isAdmin = true;
@@ -42,18 +46,25 @@ export class HomeComponent implements OnInit {
       }
       else if(this.userrole === "Training Head"){
         this.isTH = true;
-         this.bgcolor ='#7a8ca4';
-        // this.bgprofile='#d2cede';
+         this.bgcolor ='#0d8c33';
+         this.bgimg= "url('../../../assets/greenbg2.jpg')";
+         this.shdwcolor = 'rgba(80, 217, 121, 1)';
+         // this.bgprofile='#d2cede';
       }
       else if(this.userrole === "Placement Officer"){
         this.isPO = true;
-         this.bgcolor='#594f4f';
-        // this.bgprofile='#45ada8';
+         this.bgcolor='#4b1782';
+         this.bgimg= "url('../../../assets/purplebg.jpg')";
+         this.shdwcolor = 'rgba(171, 109, 237, 1)';
+         // this.bgprofile='#45ada8';
       }      
     }
     else {
       this.logout();
     }
+    this.styleex = `color:${this.bgcolor};  text-shadow: -1px 3px 6px ${this.shdwcolor};`
+    this.stylebg = `background-image: ${this.bgimg};`
+
   }
 
   ngAfterViewInit(){

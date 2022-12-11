@@ -53,14 +53,35 @@ exports.addStaff= async(req,res)=>{
 // update staff detail
 exports.updateStaff= async(req, res) => {
     try {
+        let staff={};
+        let updateInfo;
         let id = req.body._id;
-        let staff ={
-            name: req.body.name,
-            email: req.body.email,
-            password: req.body.password,
-            role : req.body.role
+        console.log(req.body)
+        if(req.body.password ==""){
+            console.log("inside first condition")
+            staff ={
+                name: req.body.name,
+                email: req.body.email,
+                role : req.body.role
+            }
+            updateInfo = await staffInfo.findByIdAndUpdate({'_id': id }, { $set: staff });
+
         }
-        let updateInfo = await staffInfo.findByIdAndUpdate({'_id': id }, { $set: staff });
+        else {
+            console.log("inside second condition")
+
+            bcrypt.hash(req.body.password, 10).then(async(hash)=>{
+                // store hash in the database
+                staff ={
+                 name: req.body.name,
+                 email: req.body.email,
+                 password: hash,
+                 role : req.body.role
+             }
+             updateInfo = await staffInfo.findByIdAndUpdate({'_id': id }, { $set: staff });
+
+        })}
+        
         res.send(updateInfo)
     } catch (error) {
         console.log(error);
@@ -129,7 +150,9 @@ exports.login=(req,res)=>{
             }
             let payload={subject:user.email+user.password}
             let token =jwt.sign(payload,"secretKey");
-            res.status(200).send({token});
+            var userrole = user.role;
+            var username = user.name;
+            res.status(200).send({token,username,userrole});
         })
     })
 };
