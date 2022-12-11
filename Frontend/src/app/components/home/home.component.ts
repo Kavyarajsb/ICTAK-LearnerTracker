@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit {
       else if(this.userrole === "Training Head"){
         this.isTH = true;
          this.bgcolor ='#0d8c33';
-         this.bgimg= "url('../../../assets/greenbg2.jpg')";
+         this.bgimg= "url('../../../assets/greenbg.jpg')";
          this.shdwcolor = 'rgba(80, 217, 121, 1)';
          // this.bgprofile='#d2cede';
       }
