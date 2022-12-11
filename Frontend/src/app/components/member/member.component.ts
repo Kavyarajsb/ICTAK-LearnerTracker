@@ -115,7 +115,8 @@ export class MemberComponent implements OnInit, AfterViewInit {
         if(data){
           this.api.addNewMember(data).subscribe(res => {
             this.toastr.success('Staff added successfully','',{timeOut:2000});
-            this.getData();
+            //this.getData();
+            location.reload();  
           })
         }
         else {
