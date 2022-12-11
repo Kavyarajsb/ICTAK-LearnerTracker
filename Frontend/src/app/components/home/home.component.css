@@ -5,6 +5,14 @@ mat-sidenav{
   background: #244e6e ;
   color: white;  
 }
+@media only screen and (max-width:600px){
+  mat-sidenav-content h1{
+  font-size: 7vw ;}
+}
+
+/* .space{
+  margin-top: 15vh;
+} */
 
 .content{
   margin: 8px;
@@ -58,7 +66,7 @@ button {
   outline: none;
   border: 0;
   background: transparent;
-  padding-top: 15px;
+  /* padding-top: 15px; */
 }
 .user {
   font-size: 14px;
@@ -105,3 +113,5 @@ button {
     opacity: 1;
   }
 }
+
+

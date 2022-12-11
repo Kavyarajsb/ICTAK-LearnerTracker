@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="row">
-    <div class="col-sm-4 searchicon" style="float: right;">
+  <!-- <div class="row">
+    <div class="col-sm-4 searchicon">
       <button mat-icon-button>
         <mat-icon>search</mat-icon>
       </button>
@@ -16,7 +16,26 @@
       Add Staff        
     </button>
     </div>
-  </div>  
+  </div>  -->
+
+  <div class="d-flex justify-content-end">
+    <div class="p-2">
+      <button mat-icon-button>
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
+    <div>
+      <mat-form-field>      
+      <input matInput (keyup)="applyFilter($any($event.target).value)" placeholder="search">
+    </mat-form-field>
+  </div>
+    <div>
+      <button mat-raised-button (click)="addnew()" style="float:right ; margin: 2vh; background-color: #356f9c; color: white;" >
+      <mat-icon>person_add</mat-icon>
+    Add Staff        
+  </button>
+  </div>
+  </div>
 
       <table mat-table [dataSource]="members" matSort class="mat-elevation-z8">
         <ng-container matColumnDef="no">

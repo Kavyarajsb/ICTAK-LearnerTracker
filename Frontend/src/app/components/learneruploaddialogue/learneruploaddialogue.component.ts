@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef} from "@angular/material/dialog";
-import { ApiService } from 'src/app/api.service';
+import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
 @Component({
@@ -16,7 +16,8 @@ export class LearneruploaddialogueComponent implements OnInit {
   isDisabled:boolean = true;
 
   constructor(private router : Router,
-    private dialogRef : MatDialogRef<LearneruploaddialogueComponent>) { }
+    private dialogRef : MatDialogRef<LearneruploaddialogueComponent> 
+    , private toastr:ToastrService) { }
 
   ngOnInit(): void {
     if(this.userrole === "Training Head"){
@@ -44,6 +45,7 @@ export class LearneruploaddialogueComponent implements OnInit {
        this.isDisabled = false;
      }else{
        this.isDisabled = true;
+       this.toastr.warning("Only csv files allowed",'',{timeOut:2000});
      }     
   }
 

@@ -34,6 +34,36 @@ router.put('/learner', learnerCntrlr.updateLearner)
 // delete learner detail
 router.delete('/learner/:id', learnerCntrlr.deleteLearner)
 
+//count the number of  learners
+router.get('/learnercount', learnerCntrlr.countLearner)
+
+//count the number of learners doing course "FSD"
+router.get('/learnerFSD', learnerCntrlr.countFSD)
+
+//count the number of learners doing course "ML-AI"
+router.get('/learnerMLAI', learnerCntrlr.countMLAI)
+
+//count the number of learners doing course "CSA"
+router.get('/learnerCSA', learnerCntrlr.countCSA)
+
+//count the number of learners doing course "DSA"
+router.get('/learnerDSA', learnerCntrlr.countDSA)
+
+//count the number of learners doing course "ST"
+router.get('/learnerST', learnerCntrlr.countST)
+
+//count the number of learners doing course "RPA"
+router.get('/learnerRPA', learnerCntrlr.countRPA)
+
+//count the number of  placed
+router.get('/placedcount', learnerCntrlr.countPlaced)
+
+//count the number of  job seeking
+router.get('/jobseekingcount', learnerCntrlr.countJobseeking)
+
+//count the number of  not interested
+router.get('/notinterestedcount', learnerCntrlr.countNotinterested)
+
 // upload csv learners
 router.post('/uploadlearners',uploads.single('csv'), (req,res)=>{
     csv()
