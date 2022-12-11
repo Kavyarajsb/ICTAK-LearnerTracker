@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('token',res.token);
           localStorage.setItem('userrole',res.userrole);
           localStorage.setItem('username', res.username);},
-      error: (e) =>this.toastr.error("Wrong password","Validation Error:",{timeOut: 2000}),
+      error: (e) =>this.toastr.error("Invalid username or password","Validation Error:",{timeOut: 2000}),
       complete: () => this.router.navigateByUrl('home/dashboard') 
   })
     }
