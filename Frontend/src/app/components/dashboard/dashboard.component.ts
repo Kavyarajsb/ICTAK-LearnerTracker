@@ -11,6 +11,9 @@ import Chart from 'chart.js/auto';
 
 export class DashboardComponent implements OnInit {
 
+  userrole = localStorage.getItem('userrole');
+  isAdmin:boolean = false;
+
   lcount:any;
   thcount:any;
   pocount:any;
@@ -33,6 +36,12 @@ export class DashboardComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+    if(this.userrole) {
+      if(this.userrole === "Admin"){
+        this.isAdmin = true;
+        //this.bgprofile='#fe667b';
+      }}
 
     
     

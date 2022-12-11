@@ -1,8 +1,8 @@
 <div class="main-wrapper">
 <div class="content-dash">
     <div fxLayout="row wrap" fxLayoutGap="175px">
-      <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" fxFlex.lg="20%"> 
-        <mat-card class="mat-elevation-z4" style="width:320px ; text-align: center; height: 130px; background-color:#7a8ca4; color: aliceblue; border-radius: 1rem;">
+      <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" fxFlex.lg="20%" *ngIf="isAdmin"> 
+        <mat-card class="mat-elevation-z4" style="width:320px ; text-align: center; height: 130px; background-color:#21b899; color: aliceblue; border-radius: 1rem;">
           <mat-card-header style="padding-top: 10px; padding-bottom: 10px;">
             <mat-card-title style="padding-left: 40px;">Training Head</mat-card-title>
             <mat-icon >people-outline </mat-icon>
@@ -15,8 +15,8 @@
           </mat-card-content>
         </mat-card>
       </div>
-      <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" fxFlex.lg="20%">
-        <mat-card class="mat-elevation-z4" style="width:320px ; text-align: center; height: 130px; background-color: #594f4f; color: aliceblue;  border-radius: 1rem;" >
+      <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" fxFlex.lg="20%" *ngIf="isAdmin">
+        <mat-card class="mat-elevation-z4" style="width:320px ; text-align: center; height: 130px; background-color:#4b1782; color: aliceblue;  border-radius: 1rem;" >
           <mat-card-header style="padding-top: 10px; padding-bottom: 10px;">
             <mat-card-title style="padding-left: 25px;">Placement Officer</mat-card-title>
             <mat-icon>people-outline </mat-icon>

@@ -56,50 +56,50 @@ export class ApiService {
   }
 
   getTHCount(){
-    return this.http.get(`${this.apiUrl}/api/staffthcount`);
+    return this.http.get(`${this.apiUrl}/staffthcount`);
   }
   
   getPOCount(){
-    return this.http.get(`${this.apiUrl}/api/staffpocount`);
+    return this.http.get(`${this.apiUrl}/staffpocount`);
   }
   
   
   getLearnerCount(){
-     return this.http.get(`${this.apiUrl}/api/learnercount`);
+     return this.http.get(`${this.apiUrl}/learnercount`);
   }
 
   getLearnerFSD(){
-    return this.http.get(`${this.apiUrl}/api/learnerFSD`);
+    return this.http.get(`${this.apiUrl}/learnerFSD`);
   }
 
   getLearnerDSA(){
-    return this.http.get(`${this.apiUrl}/api/learnerDSA`);
+    return this.http.get(`${this.apiUrl}/learnerDSA`);
   }
 
   getLearnerMLAI(){
-    return this.http.get(`${this.apiUrl}/api/learnerMLAI`);
+    return this.http.get(`${this.apiUrl}/learnerMLAI`);
   }
 
   getLearnerRPA(){
-    return this.http.get(`${this.apiUrl}/api/learnerRPA`);
+    return this.http.get(`${this.apiUrl}/learnerRPA`);
   }
 
   getLearnerCSA(){
-    return this.http.get(`${this.apiUrl}/api/learnerCSA`);
+    return this.http.get(`${this.apiUrl}/learnerCSA`);
   }
 
   getLearnerST(){
-    return this.http.get(`${this.apiUrl}/api/learnerST`);
+    return this.http.get(`${this.apiUrl}/learnerST`);
   }
   
   getPlacedCount(){
-     return this.http.get(`${this.apiUrl}/api/placedcount`);
+     return this.http.get(`${this.apiUrl}/placedcount`);
   }
   getJobseekingCount(){
-     return this.http.get(`${this.apiUrl}/api/jobseekingcount`);
+     return this.http.get(`${this.apiUrl}/jobseekingcount`);
   }
   getNotinterestedCount(){
-     return this.http.get(`${this.apiUrl}/api/notinterestedcount`);
+     return this.http.get(`${this.apiUrl}/notinterestedcount`);
   }
 
 }

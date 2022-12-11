@@ -12,7 +12,6 @@ import { MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 export class AddNewMemberComponent implements OnInit {
 
   newMemberForm:any;
-  
   titlemode:String ="";
   id:String="";
   
