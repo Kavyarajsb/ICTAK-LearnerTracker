@@ -11,15 +11,8 @@ import { MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 })
 export class AddNewMemberComponent implements OnInit {
 
+  newMemberForm:any;
   
-  newMemberForm = new FormGroup({
-    'name': new FormControl('', [Validators.required]),
-    'email' : new FormControl('',[Validators.required]),
-    'password': new FormControl('',[Validators.required]),
-    'role': new FormControl('',[Validators.required]),
-    '_id': new FormControl('')
-  });
-
   titlemode:String ="";
   id:String="";
   
@@ -31,12 +24,26 @@ export class AddNewMemberComponent implements OnInit {
       this.id = data.id;
     }
 
-  ngOnInit(): void {
 
+  ngOnInit(): void {
+    const passwordValidators = [Validators.minLength(6)];
+    if (this.id == "") {
+        passwordValidators.push(Validators.required);
+    }
+    this.newMemberForm = new FormGroup({
+      'name': new FormControl('', [Validators.required]),
+      'email' : new FormControl('',[Validators.required]),
+      'password': new FormControl('',passwordValidators),
+      'role': new FormControl('',[Validators.required]),
+      '_id': new FormControl('')
+    });
+  
 
     if(this.id != ""){
       this.api.getMemberDetails(this.id).subscribe(res => {
-        this.newMemberForm.patchValue(res);      
+        this.newMemberForm.patchValue(res); 
+        this.newMemberForm.controls.password.setValue(''); 
+        this.newMemberForm.get('email')?.disable();    
       })
     }
     }

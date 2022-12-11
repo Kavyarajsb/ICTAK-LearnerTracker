@@ -6,7 +6,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { LearnerdialogueComponent } from '../learnerdialogue/learnerdialogue.component';
-
+import { LearneruploaddialogueComponent } from '../learneruploaddialogue/learneruploaddialogue.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-learner',
@@ -21,7 +22,8 @@ export class LearnerComponent implements OnInit, AfterViewInit {
 
   constructor(private router: Router, 
     private api : ApiService, 
-    private dialog: MatDialog) { }
+    private dialog: MatDialog,
+    private toastr : ToastrService) { }
 
   userrole = localStorage.getItem('userrole');  
   isAdmin:boolean = false;
@@ -31,9 +33,11 @@ export class LearnerComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['no','learnerid', 'name', 'course', 'project', 'batch','update', 'delete'];
 
   ngOnInit(): void {
+    //user role checking
     if(this.userrole) {
       if(this.userrole === "Admin"){
         this.isAdmin = true;
+        alert('Unauthorized access to learner');
         this.logout();
       }
       else if(this.userrole === "Training Head"){
@@ -47,13 +51,18 @@ export class LearnerComponent implements OnInit, AfterViewInit {
       }          
     }
     else {
-      this.router.navigate(['']);
+      this.logout();
     }    
   }
 
+  //logout
   logout(){
     localStorage.clear();
-    this.router.navigate(['']);
+    alert('You have logged out successfully');
+    this.router.navigate([''])
+    .then(() => {      
+      window.location.reload();
+    });
   }
 
   // used for sort
@@ -93,10 +102,18 @@ export class LearnerComponent implements OnInit, AfterViewInit {
       // save data to db after clicking SAVE from dialog popup
       dialogRef.afterClosed().subscribe(
         data => {
-          this.api.updateLearnerDetails(data).subscribe(res =>{
-            console.log('Learner updated successfully');
-            this.getData();
-          })
+          if(data){ // if save button clicked
+            this.api.updateLearnerDetails(data).subscribe(res =>{
+              this.toastr.success('Learner updated successfully','',{timeOut:2000});
+              this.getData();
+            })
+          }
+          else {  // if close button clicked
+            console.log("close without validation on edit learner");
+          }          
+        },
+        error => {
+          alert(error);
         }
       );    
   }
@@ -104,6 +121,7 @@ export class LearnerComponent implements OnInit, AfterViewInit {
   // delete learner
   deleteData(id:any){
     this.api.deleteLearnerDetails(id).subscribe(res =>{
+      this.toastr.success('Learner deleted successfully','',{timeOut:2000});
       this.getData();
     })
   }
@@ -122,14 +140,52 @@ export class LearnerComponent implements OnInit, AfterViewInit {
   
     const dialogRef = this.dialog.open(LearnerdialogueComponent, dialogConfig);
     
+    // call below event once the dialog popup closed
     dialogRef.afterClosed().subscribe(
       data => {
-        this.api.addNewLearner(data).subscribe(res =>{
-          console.log('Learner added successfully');
-          this.getData();
-        })
+        // if save clicked
+        if(data){
+          this.api.addNewLearner(data).subscribe(res =>{
+            this.toastr.success('Learner added successfully','',{timeOut:2000});
+            this.getData();
+          })
+        }
+        else { // if close button clicked
+          console.log("close without validation on add learner");
+        }        
+      },
+      error => {
+        console.log(error);
       }
     ); 
+  }
+
+  showUploadCSV() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "500px";
+
+    const dialogRef = this.dialog.open(LearneruploaddialogueComponent, dialogConfig);
+  
+    // call below event once the dialog popup closed
+    dialogRef.afterClosed().subscribe(
+      data => {
+        // if save clicked
+        if(data){
+          this.api.uploadCSV(data).subscribe(res => {
+            this.toastr.success('Learner uploaded successfully','',{timeOut:2000});
+            //console.log(res);
+            this.getData();
+          });          
+        }
+        else { // if close button clicked
+          console.log("close without validation on add learner");
+        }        
+      }
+      
+    ); 
+
   }
 
 }

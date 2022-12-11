@@ -6,16 +6,17 @@ import { HomeComponent } from './components/home/home.component';
 import { LearnerComponent } from './components/learner/learner.component';
 import { LoginComponent } from './components/login/login.component';
 import { MemberComponent } from './components/member/member.component';
+import {AuthGuard} from './auth.guard'
 
 const routes: Routes = [
   {path:'',component:LoginComponent},
-  {path:'home', component: HomeComponent,
+  {path:'home',canActivate:[AuthGuard], component: HomeComponent,
   children:[
-    {path:'dashboard', component: DashboardComponent},
-    {path:'member', component: MemberComponent},
-    {path:'learner',component:LearnerComponent}
+    {path:'dashboard', canActivate:[AuthGuard], component: DashboardComponent},
+    {path:'member', canActivate:[AuthGuard], component: MemberComponent},
+    {path:'learner',canActivate:[AuthGuard], component:LearnerComponent}
   ]},
-  {path:'addnewmember',component:AddNewMemberComponent}
+  {path:'addnewmember',canActivate:[AuthGuard], component:AddNewMemberComponent}
 ];
 
 @NgModule({

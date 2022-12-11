@@ -34,6 +34,8 @@ import {Chart} from 'chart.js/auto';
 
 
 
+import { LearneruploaddialogueComponent } from './components/learneruploaddialogue/learneruploaddialogue.component';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -45,7 +47,8 @@ import {Chart} from 'chart.js/auto';
     AddNewMemberComponent,
     LoginComponent,
     LearnerComponent,
-    LearnerdialogueComponent
+    LearnerdialogueComponent,
+    LearneruploaddialogueComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +72,8 @@ import {Chart} from 'chart.js/auto';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    ToastrModule.forRoot()
   ],
   providers: [AuthService, ApiService,
     {

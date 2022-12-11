@@ -1,16 +1,16 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-1 searchicon">
+    <div class="col-sm-4 searchicon" style="float: right;">
       <button mat-icon-button>
         <mat-icon>search</mat-icon>
       </button>
     </div>
-    <div class="col-sm-7 filter-header">
+    <div class="col-sm-6 filter-header">
       <mat-form-field>      
         <input matInput (keyup)="applyFilter($any($event.target).value)" placeholder="search">
       </mat-form-field>
     </div>
-    <div class="col-sm-4 ">
+    <div class="col-sm-2 ">
       <button mat-raised-button (click)="addnew()" style="float:right ; margin: 2vh; background-color: #356f9c; color: white;" >
         <mat-icon>person_add</mat-icon>
       Add Staff        

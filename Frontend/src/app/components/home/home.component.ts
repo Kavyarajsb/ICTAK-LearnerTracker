@@ -3,6 +3,7 @@ import {MatSidenav} from '@angular/material/sidenav';
 import {BreakpointObserver} from '@angular/cdk/layout';
 import {MatMenuTrigger} from '@angular/material/menu';
 import { Router } from '@angular/router';
+import { LearnerdialogueComponent } from '../learnerdialogue/learnerdialogue.component';
 
 @Component({
   selector: 'app-home',
@@ -26,26 +27,44 @@ export class HomeComponent implements OnInit {
   isAdmin:boolean = false;
   isTH:boolean = false;
   isPO:boolean = false;
-  
+  bgimg:string = "url('../../../assets/bluebg.jpg')";
+  bgcolor:string = '#012f63';
+  shdwcolor:string = 'rgba(3, 118, 248, 1)';
+  bgprofile:string='';
+  styleex=""
+  stylebg=""
 
   constructor(private observer: BreakpointObserver,
     private router : Router) { }
 
   ngOnInit(){
+
     if(this.userrole) {
       if(this.userrole === "Admin"){
         this.isAdmin = true;
+        //this.bgprofile='#fe667b';
       }
       else if(this.userrole === "Training Head"){
         this.isTH = true;
+         this.bgcolor ='#0d8c33';
+         this.bgimg= "url('../../../assets/greenbg2.jpg')";
+         this.shdwcolor = 'rgba(80, 217, 121, 1)';
+         // this.bgprofile='#d2cede';
       }
       else if(this.userrole === "Placement Officer"){
         this.isPO = true;
+         this.bgcolor='#4b1782';
+         this.bgimg= "url('../../../assets/purplebg.jpg')";
+         this.shdwcolor = 'rgba(171, 109, 237, 1)';
+         // this.bgprofile='#45ada8';
       }      
     }
     else {
-      this.router.navigate(['']);
-    }    
+      this.logout();
+    }
+    this.styleex = `color:${this.bgcolor};  text-shadow: -1px 3px 6px ${this.shdwcolor};`
+    this.stylebg = `background-image: ${this.bgimg};`
+
   }
 
   ngAfterViewInit(){
@@ -62,7 +81,11 @@ export class HomeComponent implements OnInit {
 
   logout(){
     localStorage.clear();
-    this.router.navigate(['']);  
+    //this.router.navigate(['']);  
+    this.router.navigate([''])
+    .then(() => {
+      window.location.reload();
+    });
   }
 
 }

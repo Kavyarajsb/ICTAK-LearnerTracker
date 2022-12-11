@@ -1,22 +1,22 @@
 <div class="container">
 
-<div class="row">
+<div class="row" >
   <div class="col-sm-1 searchicon">
     <button mat-icon-button>
       <mat-icon>search</mat-icon>
     </button>
   </div>
-  <div class="col-sm-7 filter-header">
+  <div class="col-sm-5 filter-header" style="float: right;">
     <mat-form-field>      
       <input matInput (keyup)="applyFilter($any($event.target).value)" placeholder="search">
     </mat-form-field>
   </div>
-  <div class="col-sm-4 ">
-    <button mat-raised-button style="float:right; margin-top:2vh;"  color="warn" *ngIf="isTH">
+  <div class="col-sm-6 ">
+    <button mat-raised-button style="float:right; margin-top:2vh;" (click)="showUploadCSV()"  color="warn" *ngIf="isTH">
       <mat-icon>file_upload</mat-icon>
        Upload        
     </button>
-    <button mat-raised-button (click)="showAddLearner()" *ngIf="isTH" style="float:right ; margin: 2vh; background-color: gray; color: white;" >
+    <button mat-raised-button (click)="showAddLearner()" *ngIf="isTH" style="float:right ; margin: 2vh; background-color: #24A0ED; color: white;" >
         <mat-icon>person_add</mat-icon>
       Add Learner        
     </button>

@@ -1,4 +1,4 @@
-const learnerInfo = require('../models/learner')
+const learnerInfo = require('../models/learner');
 
 //read learner list 
 exports.getAllLearners= async(req,res)=>{

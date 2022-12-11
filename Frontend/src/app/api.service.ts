@@ -8,46 +8,51 @@ export class ApiService {
 
   constructor(private http:HttpClient) { }
 
-  apiUrl: String = "http://localhost:3000";
+  apiUrl: String = "http://localhost:3000/api";
 
   getMemberList(){   
-    return this.http.get(`${this.apiUrl}/api/stafflist`);  
+    return this.http.get(`${this.apiUrl}/stafflist`);  
   }
 
   addNewMember(data:any){
-    return this.http.post(`${this.apiUrl}/api/staff`, data);  
+    return this.http.post(`${this.apiUrl}/staff`, data);  
   }
 
   getMemberDetails(id:any){
-    return this.http.get(`${this.apiUrl}/api/staff/${id}`);
+    return this.http.get(`${this.apiUrl}/staff/${id}`);
   }
 
   updateMemberDetails(data:any){
-    return this.http.put(`${this.apiUrl}/api/staff`,data);
+    return this.http.put(`${this.apiUrl}/staff`,data);
   }
 
   deleteMemberDetails(id:any){
-    return this.http.delete(`${this.apiUrl}/api/staff/${id}`)
+    return this.http.delete(`${this.apiUrl}/staff/${id}`)
   }
 
   getLearnersList(){
-    return this.http.get(`${this.apiUrl}/api/learnerlist`);
+    return this.http.get(`${this.apiUrl}/learnerlist`);
   }
 
   addNewLearner(data:any){
-    return this.http.post(`${this.apiUrl}/api/learner`,data);
+    return this.http.post(`${this.apiUrl}/learner`,data);
   }
 
   getLearnerDetails(id:any){
-    return this.http.get(`${this.apiUrl}/api/learner/${id}`);
+    return this.http.get(`${this.apiUrl}/learner/${id}`);
   }
 
   deleteLearnerDetails(id:any){
-    return this.http.delete(`${this.apiUrl}/api/learner/${id}`)
+    return this.http.delete(`${this.apiUrl}/learner/${id}`)
   }
 
   updateLearnerDetails(data:any){
-    return this.http.put(`${this.apiUrl}/api/learner`,data);
+    return this.http.put(`${this.apiUrl}/learner`,data);
+  }
+
+  // upload csv 
+  uploadCSV(file:any) {
+    return this.http.post(`${this.apiUrl}/uploadlearners`, file)
   }
 
   getTHCount(){

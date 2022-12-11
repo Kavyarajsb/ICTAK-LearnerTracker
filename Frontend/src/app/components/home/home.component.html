@@ -7,7 +7,7 @@
     </mat-icon>
 </button>
 <mat-sidenav-container>
-    <mat-sidenav #sidenav="matSidenav">
+    <mat-sidenav #sidenav="matSidenav" [style.background-color]="bgcolor">
         <div>
             <img src="./assets/logo.png" alt="" class="logo"/>
             <p class="cap">LEARNER TRACKER</p>
@@ -33,18 +33,20 @@
     <!-- content -->
     
     <mat-sidenav-content>
-        <button mat-dialog-actions mat-button [mat-menu-trigger-for]="menu" class="user mt-2 d-flex" style="float:right ;">
-                    
-            <mat-icon>account_circle</mat-icon>
-            {{username}}
-            <mat-icon>keyboard_arrow_down</mat-icon>
-        </button>
-            <mat-menu #menu="matMenu">
-              <button mat-menu-item (click)="logout()" routerLink="">
-                <mat-icon>exit_to_app</mat-icon>
-                Logout
-              </button>
-            </mat-menu>
+                <h1 [style]="this.stylebg" class="username">Welcome&nbsp;<span [style]="this.styleex">{{username}}</span></h1>
+                <button mat-dialog-actions mat-button [mat-menu-trigger-for]="menu" style="float:right ;" >
+                    <mat-icon>account_circle</mat-icon>
+                    {{userrole}}
+                    <mat-icon>keyboard_arrow_down</mat-icon>
+                </button>
+                    <mat-menu #menu="matMenu">
+                      <button mat-menu-item (click)="logout()" routerLink="">
+                        <mat-icon>exit_to_app</mat-icon>
+                        Logout
+                      </button>
+                    </mat-menu>
+
+        
         <div class="content" style="margin-top:15vh ;">
             <router-outlet></router-outlet>
         </div>

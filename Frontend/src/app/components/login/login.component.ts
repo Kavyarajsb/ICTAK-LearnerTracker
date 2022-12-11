@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   user={email:'',password:''};
-  constructor(private auth:AuthService,private router:Router) { }
+  constructor(private auth:AuthService,private router:Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     let loginClick = document.querySelector('.loginClick')
@@ -44,26 +45,22 @@ export class LoginComponent implements OnInit {
   }
 
   login(form: any){
-
     console.log('........',this.user);
-   
-  
-    this.auth.loginToBackend(this.user).subscribe(res=>{
-   
-      console.log('data from backend',res);
-  
-      localStorage.setItem('token',res.token);
-      localStorage.setItem('userrole',res.userrole);
-      localStorage.setItem('username', res.username);
-      
-      this.router.navigateByUrl('home');
+    
+    this.auth.loginToBackend(this.user).subscribe({
+      next: (res)=>{console.log('data from backend',res);
+          localStorage.setItem('token',res.token);
+          localStorage.setItem('userrole',res.userrole);
+          localStorage.setItem('username', res.username);},
+      error: (e) =>this.toastr.error("Invalid username or password","Validation Error:",{timeOut: 2000}),
+      complete: () => this.router.navigateByUrl('home/dashboard') 
   })
     }
 
 
     slideUp(){
       console.log('sliding up')
-      let intro = document.querySelector<HTMLElement>('.intro')
+      let intro = document.querySelector<HTMLElement>('.intros')
       intro!.style.top= '-100vh'
     }
 }
