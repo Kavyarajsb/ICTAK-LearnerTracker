@@ -53,6 +53,7 @@ exports.addStaff= async(req,res)=>{
 // update staff detail
 exports.updateStaff= async(req, res) => {
     try {
+        if(Object.keys(req.body.password).length === 0){
         let id = req.body._id;
         let staff ={
             name: req.body.name,
@@ -60,11 +61,24 @@ exports.updateStaff= async(req, res) => {
             password: req.body.password,
             role : req.body.role
         }
+    }else{
+        bcrypt.hash(req.body.password, 10).then((hash)=>{
+            // store hash in the database
+            let staff ={
+             name: req.body.name,
+             email: req.body.email,
+             password: hash,
+             role : req.body.role
+         }
+        
+        })
+    }
         let updateInfo = await staffInfo.findByIdAndUpdate({'_id': id }, { $set: staff });
         res.send(updateInfo)
     } catch (error) {
         console.log(error);
     }
+
 }
 
 // delete staff detail
@@ -79,6 +93,33 @@ exports.deleteStaff= async(req,res)=>{
     }
 }
 
+//count of Training Head
+
+exports.countTh=async(req,res)=>{
+    try {
+        const count = await staffInfo.find( {"role":"Training Head"} ).count();
+        console.log("TH Count>>>",count)
+        res.json(count);
+       
+    }
+    catch(error) {
+        console.log(error);
+    }
+}
+
+//count of Placement Officer
+
+exports.countPO=async(req,res)=>{
+    try {
+        const count = await staffInfo.find( {"role":"Placement Officer"} ).count();
+        console.log("PO Count>>>",count)
+        res.json(count);
+       
+    }
+    catch(error) {
+        console.log(error);
+    }
+}
 
 // Login Api
 exports.login=(req,res)=>{
@@ -109,6 +150,8 @@ exports.login=(req,res)=>{
             }
         
     });
+
+    
 
 
 };

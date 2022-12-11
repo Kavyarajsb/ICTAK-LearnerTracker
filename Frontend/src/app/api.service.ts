@@ -50,4 +50,51 @@ export class ApiService {
     return this.http.put(`${this.apiUrl}/api/learner`,data);
   }
 
+  getTHCount(){
+    return this.http.get(`${this.apiUrl}/api/staffthcount`);
+  }
+  
+  getPOCount(){
+    return this.http.get(`${this.apiUrl}/api/staffpocount`);
+  }
+  
+  
+  getLearnerCount(){
+     return this.http.get(`${this.apiUrl}/api/learnercount`);
+  }
+
+  getLearnerFSD(){
+    return this.http.get(`${this.apiUrl}/api/learnerFSD`);
+  }
+
+  getLearnerDSA(){
+    return this.http.get(`${this.apiUrl}/api/learnerDSA`);
+  }
+
+  getLearnerMLAI(){
+    return this.http.get(`${this.apiUrl}/api/learnerMLAI`);
+  }
+
+  getLearnerRPA(){
+    return this.http.get(`${this.apiUrl}/api/learnerRPA`);
+  }
+
+  getLearnerCSA(){
+    return this.http.get(`${this.apiUrl}/api/learnerCSA`);
+  }
+
+  getLearnerST(){
+    return this.http.get(`${this.apiUrl}/api/learnerST`);
+  }
+  
+  getPlacedCount(){
+     return this.http.get(`${this.apiUrl}/api/placedcount`);
+  }
+  getJobseekingCount(){
+     return this.http.get(`${this.apiUrl}/api/jobseekingcount`);
+  }
+  getNotinterestedCount(){
+     return this.http.get(`${this.apiUrl}/api/notinterestedcount`);
+  }
+
 }

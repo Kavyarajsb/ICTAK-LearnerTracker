@@ -80,6 +80,156 @@ exports.deleteLearner= async(req,res)=>{
     }
 }
 
+//count the number of learners
+
+exports.countLearner=async(req,res)=>{
+    try {
+        const count = await learnerInfo.find() .count();
+        console.log("Learner Count>>>",count)
+        res.json(count);
+       
+    }
+    catch(error) {
+        console.log(error);
+    }
+
+}
+
+//count the number of learners doing course "FSD"
+
+exports.countFSD=async(req,res)=>{
+    try {
+       
+        const count = await learnerInfo.find( {"course":"FSD"} ).count();
+        console.log("Learners doing FSD>>>",count)
+        res.json(count);
+       
+    }
+    catch(error) {
+        console.log(error);
+    }
+
+}
+
+//count the number of learners doing course "DSA"
+
+exports.countDSA=async(req,res)=>{
+    try {
+       
+        const count = await learnerInfo.find( {"course":"DSA"} ).count();
+        console.log("Learners doing DSA>>>",count)
+        res.json(count);
+       
+    }
+    catch(error) {
+        console.log(error);
+    }
+
+}
+
+//count the number of learners doing course "ML-AI"
+
+exports.countMLAI=async(req,res)=>{
+    try {
+       
+        const count = await learnerInfo.find( {"course":"ML-AI"} ).count();
+        console.log("Learners doing ML-AI>>>",count)
+        res.json(count);
+       
+    }
+    catch(error) {
+        console.log(error);
+    }
+
+}
+
+//count the number of learners doing course "RPA"
+
+exports.countRPA=async(req,res)=>{
+    try {
+       
+        const count = await learnerInfo.find( {"course":"RPA"} ).count();
+        console.log("Learners doing RPA>>>",count)
+        res.json(count);
+       
+    }
+    catch(error) {
+        console.log(error);
+    }
+
+}
+//count the number of learners doing course "ST"
+
+exports.countST=async(req,res)=>{
+    try {
+       
+        const count = await learnerInfo.find( {"course":"ST"} ).count();
+        console.log("Learners doing ST>>>",count)
+        res.json(count);
+       
+    }
+    catch(error) {
+        console.log(error);
+    }
+
+}
+
+//count the number of learners doing course "CSA"
+
+exports.countCSA=async(req,res)=>{
+    try {
+       
+        const count = await learnerInfo.find( {"course":"CSA"} ).count();
+        console.log("Learners doing CSA>>>",count)
+        res.json(count);
+       
+    }
+    catch(error) {
+        console.log(error);
+    }
+
+}
+
+//count the number of placement status
+
+exports.countPlaced=async(req,res)=>{
+    try {
+        const count = await learnerInfo.find({"placementstatus":"Placed"}).count();
+        console.log("Placed Count>>>",count)
+        res.json(count);
+       
+    }
+    catch(error) {
+        console.log(error);
+    }
+
+}
+exports.countJobseeking=async(req,res)=>{
+    try {
+        const count = await learnerInfo.find({"placementstatus":"Job Seeking"}).count();
+        console.log("Jobseeking Count>>>",count)
+        res.json(count);
+       
+    }
+    catch(error) {
+        console.log(error);
+    }
+
+}
+exports.countNotinterested=async(req,res)=>{
+    try {
+        const count = await learnerInfo.find({"placementstatus":"NOT Interested"}).count();
+        console.log("Notinterested Count>>>",count)
+        res.json(count);
+       
+    }
+    catch(error) {
+        console.log(error);
+    }
+
+}
+
+
 // add csv fileinfo
 exports.addCSVLearners = async(req,res)=>{
 }

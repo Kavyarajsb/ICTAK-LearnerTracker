@@ -1,41 +1,88 @@
+<div class="main-wrapper">
 <div class="content-dash">
-    <div fxLayout="row wrap" fxLayoutGap="200px">
+    <div fxLayout="row wrap" fxLayoutGap="175px">
       <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" fxFlex.lg="20%"> 
-        <mat-card class="mat-elevation-z4" style="width:320px ;">
-          <mat-card-header>
-            <mat-card-title>Training Head</mat-card-title>
+        <mat-card class="mat-elevation-z4" style="width:320px ; text-align: center; height: 130px; background-color:#7a8ca4; color: aliceblue; border-radius: 1rem;">
+          <mat-card-header style="padding-top: 10px; padding-bottom: 10px;">
+            <mat-card-title style="padding-left: 40px;">Training Head</mat-card-title>
+            <mat-icon >people-outline </mat-icon>
           </mat-card-header>
+          
           <mat-card-content>
-            <p style="padding-left:20px ;">
-              Total No.
-            </p>
+            <div style="  font-size: 30px;">
+              {{thcount}}
+            </div>
           </mat-card-content>
         </mat-card>
       </div>
       <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" fxFlex.lg="20%">
-        <mat-card class="mat-elevation-z4" style="width:320px ;" >
-          <mat-card-header>
-            <mat-card-title>Placement Officer</mat-card-title>
+        <mat-card class="mat-elevation-z4" style="width:320px ; text-align: center; height: 130px; background-color: #594f4f; color: aliceblue;  border-radius: 1rem;" >
+          <mat-card-header style="padding-top: 10px; padding-bottom: 10px;">
+            <mat-card-title style="padding-left: 25px;">Placement Officer</mat-card-title>
+            <mat-icon>people-outline </mat-icon>
           </mat-card-header>
-
+          
           <mat-card-content>
-            <p style="padding-left:20px ;">
-                Total No.
-              </p>
+            <div style="  font-size: 30px;">
+              {{pocount}}
+            </div>
           </mat-card-content>
         </mat-card>
     </div>
     <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" fxFlex.lg="20%">
-        <mat-card class="mat-elevation-z4" style="width:320px ;">
-          <mat-card-header>
-            <mat-card-title>Learners</mat-card-title>
+        <mat-card class="mat-elevation-z4" style="width:320px ; text-align: center; height: 130px; background-color:  rgb(59, 138, 152); color: aliceblue; border-radius: 1rem;">
+          <mat-card-header style="padding-top: 10px; padding-bottom: 10px;">
+            <mat-card-title style="padding-left: 60px;">Learners</mat-card-title>
+            <mat-icon>people-outline </mat-icon>
           </mat-card-header>
-
+          
           <mat-card-content>
-                <p style="padding-left:20px ;">
-                    Total No.
-                  </p>
+            <div style=" font-size: 30px;">
+              
+              {{lcount}}
+            </div>
           </mat-card-content>
         </mat-card>
     </div>
     </div>
+
+    <div class="content-chart">
+      <div fxLayout="row wrap" fxLayoutGap="380px">
+        <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" fxFlex.lg="20%">
+          <div class="courseContainer">
+          <mat-card class="mat-elevation-z4">
+            <h2>Learners enrolled in Courses</h2>
+            <p style="padding-left:20px ;">
+              <canvas  id="MyChart" >{{ chart }}</canvas>
+              </p>
+      </mat-card>
+    </div>
+        </div>
+    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" fxFlex.lg="20%">
+          <div class="pieContainer">
+          <mat-card class="mat-elevation-z4">
+            <h2>Placement Status</h2>
+            <p style="padding-left:20px ;">
+              <canvas  id="PieChart" >{{ piechart }}</canvas>
+              </p>
+      </mat-card>
+    </div>
+  </div>
+  </div>
+</div>
+</div>
+
+  
+
+   
+
+    <!-- <mat-card-content>
+      <p style="padding-left:20px ;">
+        <canvas  id="MyChart" >{{ piechart }}</canvas>
+        </p>
+</mat-card-content> -->
+
+    
+    
+    
+    

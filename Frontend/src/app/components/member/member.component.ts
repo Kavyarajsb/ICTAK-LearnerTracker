@@ -18,6 +18,7 @@ export class MemberComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: any = MatSort;
   @ViewChild(MatPaginator) paginator: any = MatPaginator;
   public members = new MatTableDataSource<MemberData>();
+  
 
   constructor(private router: Router, private api: ApiService, private dialog: MatDialog) { }
 

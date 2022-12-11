@@ -30,6 +30,8 @@ import { AuthService } from './auth.service';
 import { ApiService } from './api.service';
 import { TokenInterceptorService } from './token-interceptor.service';
 import { LearnerdialogueComponent } from './components/learnerdialogue/learnerdialogue.component';
+import {Chart} from 'chart.js/auto';
+
 
 
 

@@ -11,7 +11,7 @@ import { MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 })
 export class AddNewMemberComponent implements OnInit {
 
-
+  
   newMemberForm = new FormGroup({
     'name': new FormControl('', [Validators.required]),
     'email' : new FormControl('',[Validators.required]),
@@ -22,6 +22,7 @@ export class AddNewMemberComponent implements OnInit {
 
   titlemode:String ="";
   id:String="";
+  
 
   constructor(private formBuilder:FormBuilder,private api:ApiService,private router:Router,
     private dialogRef : MatDialogRef<AddNewMemberComponent>,
