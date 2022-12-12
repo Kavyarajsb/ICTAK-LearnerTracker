@@ -1,22 +1,27 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
 
-//csv upload required packages and declaration starts
-var multer = require('multer');
-var csv = require('csvtojson');
+//csv upload required packages -- multer + fast-csv and streamifier - not saving file to folder
+const csvupload = require('@fast-csv/parse');
+const streamifier = require('streamifier');
+const parseCsv = multer().single('csv'); // uses file input name
+//end multer + fast-csv and streamifier
 
+//csv upload required packages and declaration starts -- multer + csvtojson
+const csv = require('csvtojson');
 let storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, './uploads');
     },
     filename: (req, file, cb) => {
-        cb(null, file.originalname);
+        cb(null, `${Date.now()}‐${file.originalname}`);
     }
 });
 let uploads = multer({ storage: storage });
-const learnerInfo = require('../models/learner');
 // csv upload specific code ends
 
+const learnerInfo = require('../models/learner');
 const learnerCntrlr = require('../controllers/learner')
 
 //read learner list 
@@ -34,12 +39,41 @@ router.put('/learner', learnerCntrlr.updateLearner)
 // delete learner detail
 router.delete('/learner/:id', learnerCntrlr.deleteLearner)
 
-// upload csv learners
+//count the number of  learners
+router.get('/learnercount', learnerCntrlr.countLearner)
+
+//count the number of learners doing course "FSD"
+router.get('/learnerFSD', learnerCntrlr.countFSD)
+
+//count the number of learners doing course "ML-AI"
+router.get('/learnerMLAI', learnerCntrlr.countMLAI)
+
+//count the number of learners doing course "CSA"
+router.get('/learnerCSA', learnerCntrlr.countCSA)
+
+//count the number of learners doing course "DSA"
+router.get('/learnerDSA', learnerCntrlr.countDSA)
+
+//count the number of learners doing course "ST"
+router.get('/learnerST', learnerCntrlr.countST)
+
+//count the number of learners doing course "RPA"
+router.get('/learnerRPA', learnerCntrlr.countRPA)
+
+//count the number of  placed
+router.get('/placedcount', learnerCntrlr.countPlaced)
+
+//count the number of  job seeking
+router.get('/jobseekingcount', learnerCntrlr.countJobseeking)
+
+//count the number of  not interested
+router.get('/notinterestedcount', learnerCntrlr.countNotinterested)
+
+// upload csv learners to folder first and then save to db
 router.post('/uploadlearners',uploads.single('csv'), (req,res)=>{
     csv()
     .fromFile(req.file.path)
     .then((jsonObj)=>{
-        
         var learners = [];
         for(var i = 0;i<jsonObj.length;i++){
             var obj={};
@@ -55,15 +89,46 @@ router.post('/uploadlearners',uploads.single('csv'), (req,res)=>{
         learnerInfo.insertMany(learners, (err, data) => {
             if (err) {
                 res.status(401).send("Duplicate entry error");
-               //res.send(err);
-            } else {
-               // res.send(data);
-              res.status(200).send({data});
+               } else {
+                 res.status(200).send({data});
             }
         });
     }).catch((error) => {
         console.log(error);
     })
-});  
+}); 
+
+//upload csv learners by reading line by line from file first and then save to db
+router.post("/upload", parseCsv , (req, res) => {
+    const { buffer } = req.file;  
+    const dataFromCSV = [];
+  
+    streamifier
+      .createReadStream(buffer)
+      .pipe(csvupload.parse({ headers: true, ignoreEmpty: true })) // <== this is @fast-csv/parse!!
+      .on("data", (row) => {
+            var obj={};
+            obj.learnerid=row['Learner ID'];
+            obj.name=row['Name'];
+            obj.course=row['Course'];
+            obj.project=row['Project'];
+            obj.batch=row['Batch'];
+            obj.coursestatus=row['Course Status'];
+            dataFromCSV.push(obj);
+      })
+      .on("end", async (rowCount) => {
+        try {
+            learnerInfo.insertMany(dataFromCSV, (err, data) => {
+                if (err) {
+                    res.status(401).send("Duplicate entry error");                   
+                } else {
+                   res.status(200).send({data});
+                }
+            });                   
+        } catch (error) {
+             console.log(error);            
+        }
+      });
+  });
 
 module.exports = router;

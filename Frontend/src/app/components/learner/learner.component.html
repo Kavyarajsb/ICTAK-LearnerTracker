@@ -1,6 +1,6 @@
 <div class="container">
 
-<div class="row" >
+<!-- <div class="row" >
   <div class="col-sm-1 searchicon">
     <button mat-icon-button>
       <mat-icon>search</mat-icon>
@@ -21,7 +21,33 @@
       Add Learner        
     </button>
   </div>
+</div> -->
+
+<div class="d-flex justify-content-end" >
+  <div class="p-2">
+    <button mat-icon-button>
+    <mat-icon>search</mat-icon>
+  </button>
 </div>
+  <div>
+    <mat-form-field style="padding-right: 10px;">      
+    <input matInput (keyup)="applyFilter($any($event.target).value)" placeholder="search">
+  </mat-form-field>
+</div>
+<div>
+  <button mat-raised-button style="float:right; margin-top:2vh;" (click)="showUploadCSV()"  color="warn" *ngIf="isTH">
+    <mat-icon>file_upload</mat-icon>
+     Upload        
+  </button>
+</div>
+  <div>
+    <button mat-raised-button (click)="showAddLearner()" *ngIf="isTH" style="float:right ; margin: 2vh; background-color: #24A0ED; color: white;" >
+      <mat-icon>person_add</mat-icon>
+  Add Learner        
+</button>
+</div>
+</div>
+
 
   <table mat-table [dataSource]="learners" matSort class="mat-elevation-z8">
     <ng-container matColumnDef="no">

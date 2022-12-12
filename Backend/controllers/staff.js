@@ -86,6 +86,7 @@ exports.updateStaff= async(req, res) => {
     } catch (error) {
         console.log(error);
     }
+
 }
 
 // delete staff detail
@@ -100,6 +101,33 @@ exports.deleteStaff= async(req,res)=>{
     }
 }
 
+//count of Training Head
+
+exports.countTh=async(req,res)=>{
+    try {
+        const count = await staffInfo.find( {"role":"Training Head"} ).count();
+        console.log("TH Count>>>",count)
+        res.json(count);
+       
+    }
+    catch(error) {
+        console.log(error);
+    }
+}
+
+//count of Placement Officer
+
+exports.countPO=async(req,res)=>{
+    try {
+        const count = await staffInfo.find( {"role":"Placement Officer"} ).count();
+        console.log("PO Count>>>",count)
+        res.json(count);
+       
+    }
+    catch(error) {
+        console.log(error);
+    }
+}
 
 // Login Api
 // exports.login=(req,res)=>{
@@ -126,6 +154,8 @@ exports.deleteStaff= async(req,res)=>{
 //             }
 //         }
 //     });
+
+    
 
 
 // };

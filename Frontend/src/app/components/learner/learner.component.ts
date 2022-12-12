@@ -103,7 +103,8 @@ export class LearnerComponent implements OnInit, AfterViewInit {
       dialogRef.afterClosed().subscribe({
         next:(data) => {
           if(data){ // if save button clicked
-            this.api.updateLearnerDetails(data).subscribe(res =>{
+            this.api.updateLearnerDetails(data).subscribe(
+              res =>{
               this.toastr.success('Learner updated successfully','',{timeOut:2000});
               this.getData();
             })
@@ -174,11 +175,17 @@ export class LearnerComponent implements OnInit, AfterViewInit {
       next:(data) => {
           // if save clicked
           if(data){
-            this.api.uploadCSV(data).subscribe(res => {
-              this.toastr.success('Learner uploaded successfully','',{timeOut:2000});
-              //console.log(res);
-              this.getData();
-            });          
+            //this.api.uploadCSV(data).subscribe({
+            this.api.upload(data).subscribe({
+              next:(res)=>{
+                this.toastr.success('Learner updated successfully','',{timeOut:2000});
+                this.getData();
+              },
+              error:(e)=>{
+                this.toastr.error(e.error,"",{timeOut: 2000});
+              }
+            }            
+            );          
           }
           else { // if close button clicked
             console.log("close without validation on add learner");
@@ -186,7 +193,8 @@ export class LearnerComponent implements OnInit, AfterViewInit {
           }        
       },
       error:(e)=>{
-        this.toastr.error("Upload Error. Please check mandatory fields and duplicates","",{timeOut: 2000});
+        console.log(e);
+        //this.toastr.error("Upload Error. Please check mandatory fields and duplicates","",{timeOut: 2000});
       },
       complete:() => console.log("Upload popup closed")
     }); 

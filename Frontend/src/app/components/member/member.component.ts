@@ -19,6 +19,7 @@ export class MemberComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: any = MatSort;
   @ViewChild(MatPaginator) paginator: any = MatPaginator;
   public members = new MatTableDataSource<MemberData>();
+  
 
   constructor(private router: Router, private api: ApiService, private dialog: MatDialog, private toastr : ToastrService) { }
 
@@ -115,8 +116,9 @@ export class MemberComponent implements OnInit, AfterViewInit {
         if(data){
           this.api.addNewMember(data).subscribe(res => {
             this.toastr.success('Staff added successfully','',{timeOut:2000});
-            //this.getData();
-            location.reload();  
+            console.log(res);
+            window.location.reload();
+            this.getData();
           })
         }
         else {
