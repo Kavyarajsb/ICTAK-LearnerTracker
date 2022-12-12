@@ -7,9 +7,12 @@ import { HttpClient } from '@angular/common/http';
 export class AuthService {
 
   constructor(private http:HttpClient) { }
+
+  apiUrl :String = 'http://localhost:3000/api';
+
   loginToBackend(data:any){
 
-    return this.http.post<any>('http://localhost:3000/api/login',data);
+    return this.http.post<any>(`${this.apiUrl}/login`,data);
   }
   loggedIn(){
     return !! localStorage.getItem('token')

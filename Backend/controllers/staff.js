@@ -141,40 +141,6 @@ exports.countPO=async(req,res)=>{
     }
 }
 
-// Login Api
-// exports.login=(req,res)=>{
-//     let userData=req.body;
-//     var flag=false;
-//     var userrole="";
-//     var username="";
-
-//     staffInfo.find().then(function(user){
-//         for(let i=0;i<user.length;i++){
-//             if(userData.email==user[i].email){
-//                 if(userData.password==user[i].password){
-//                     console.log("found user",user[i].email);
-//                     userrole = user[i].role;
-//                     username = user[i].name;
-//                     let payload={subject:userData.email+userData.password}
-//             let token =jwt.sign(payload,"secretKey");
-//             res.status(200).send({token,username,userrole});
-//                     break;
-//                 }else{
-//                     res.status(401).send("Wrong Password")                    
-//                     break;
-//                 }
-//             }
-//         }
-//     });
-
-    
-
-
-// };
-
-
-
-
 // This will be the login function after frontend is ready 
 //              |
 //              |

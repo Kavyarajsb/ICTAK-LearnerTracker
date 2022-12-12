@@ -3,7 +3,6 @@ import {MatSidenav} from '@angular/material/sidenav';
 import {BreakpointObserver} from '@angular/cdk/layout';
 import {MatMenuTrigger} from '@angular/material/menu';
 import { Router } from '@angular/router';
-import { LearnerdialogueComponent } from '../learnerdialogue/learnerdialogue.component';
 
 @Component({
   selector: 'app-home',
@@ -80,8 +79,7 @@ export class HomeComponent implements OnInit {
   }
 
   logout(){
-    localStorage.clear();
-    //this.router.navigate(['']);  
+    localStorage.clear();  
     this.router.navigate([''])
     .then(() => {
       window.location.reload();

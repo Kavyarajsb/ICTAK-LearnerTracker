@@ -29,17 +29,6 @@ export class LoginComponent implements OnInit {
       setTimeout(()=>{
         desc!.classList.add('active')
     },1500)
-      // setTimeout(()=>{
-      //   logoSpan.forEach((span,idx)=>{
-      //     setTimeout(()=>{
-      //       span.classList.remove('active');
-      //       span.classList.add('fade');
-      //     }, (idx+1)*50)
-      //   })
-      // },4000)
-      // setTimeout(() => {
-      //   intro!.style.top= '-100vh'
-      // },2300);
     })
   })
   }
