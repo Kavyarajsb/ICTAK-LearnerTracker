@@ -6,7 +6,7 @@ const staffInfo = require('../models/staff')
 //read staff list 
 exports.getAllStaff= async(req,res)=>{
     try {
-        const list = await staffInfo.find();
+        const list = await staffInfo.find({'role': {$ne : "Admin"}});
         res.send(list);
     }
     catch(error) {
@@ -29,21 +29,33 @@ exports.getOneStaff=async(req,res)=>{
 // add new staff
 exports.addStaff= async(req,res)=>{
     try {
-        // store the front end entered details in server variable
-        console.log(req.body);
-        bcrypt.hash(req.body.password, 10).then((hash)=>{
-               // store hash in the database
-               let staffnew ={
-                name: req.body.name,
-                email: req.body.email,
-                password: hash,
-                role : req.body.role
+        
+          staffInfo.findOne({ email: req.body.email }, function(err, user) {
+            if(err) {
+               //handle error here
+               res.status(401).send(err.status);
+            }         
+            //if a user was found, that means the user's email matches the entered email
+            if (user) {
+                  res.status(401).send("Staff with email already found. Please use different email.");
+            } else {
+                //code if no user with entered email was found
+                bcrypt.hash(req.body.password, 10).then((hash)=>{
+                    // store hash in the database
+                    let staffnew ={
+                     name: req.body.name,
+                     email: req.body.email,
+                     password: hash,
+                     role : req.body.role
+                    }
+     
+                    let staff = new staffInfo(staffnew);
+                    let saveStaff = staff.save();
+                    res.send(saveStaff);
+                });
             }
-
-            let staff = new staffInfo(staffnew);
-            let saveStaff = staff.save();
-            res.send(saveStaff);
-        })
+         }); 
+         console.log(req.body);        
     }
     catch(error) {
         console.log(error);

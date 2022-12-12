@@ -114,12 +114,26 @@ export class MemberComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().subscribe(
       data => {
         if(data){
-          this.api.addNewMember(data).subscribe(res => {
-            this.toastr.success('Staff added successfully','',{timeOut:2000});
-            console.log(res);
-            window.location.reload();
-            this.getData();
-          })
+          this.api.addNewMember(data).subscribe({
+            next: (res) => {
+              this.toastr.success('Staff added successfully','',{timeOut:2000});
+              setTimeout(() => {
+                window.location.reload();
+                this.getData();
+              },2500);              
+            },
+            error:(e) => {
+              this.toastr.error(e.error,"",{timeOut: 3000});
+            }
+          }
+          //   res => {
+          //   this.toastr.success('Staff added successfully','',{timeOut:2000});
+          //   console.log(res);
+          //   window.location.reload();
+          //   this.getData();
+          // }
+          
+          )
         }
         else {
           console.log("close without validation on add member");
