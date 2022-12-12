@@ -31,9 +31,7 @@ import { ApiService } from './api.service';
 import { TokenInterceptorService } from './token-interceptor.service';
 import { LearnerdialogueComponent } from './components/learnerdialogue/learnerdialogue.component';
 import {Chart} from 'chart.js/auto';
-
-
-
+import { LayoutModule } from '@angular/cdk/layout';
 import { LearneruploaddialogueComponent } from './components/learneruploaddialogue/learneruploaddialogue.component';
 import { ToastrModule } from 'ngx-toastr';
 
@@ -73,7 +71,8 @@ import { ToastrModule } from 'ngx-toastr';
     ReactiveFormsModule,
     HttpClientModule,
     FlexLayoutModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    LayoutModule
   ],
   providers: [AuthService, ApiService,
     {

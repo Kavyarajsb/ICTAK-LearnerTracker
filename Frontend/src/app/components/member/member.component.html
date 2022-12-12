@@ -1,40 +1,25 @@
-<div class="container">
-  <!-- <div class="row">
-    <div class="col-sm-4 searchicon">
-      <button mat-icon-button>
-        <mat-icon>search</mat-icon>
-      </button>
-    </div>
-    <div class="col-sm-6 filter-header">
-      <mat-form-field>      
-        <input matInput (keyup)="applyFilter($any($event.target).value)" placeholder="search">
-      </mat-form-field>
-    </div>
-    <div class="col-sm-2 ">
-      <button mat-raised-button (click)="addnew()" style="float:right ; margin: 2vh; background-color: #356f9c; color: white;" >
-        <mat-icon>person_add</mat-icon>
-      Add Staff        
-    </button>
-    </div>
-  </div>  -->
-
+<div class="container" >
+  <div fxLayout="column wrap"  style="float: right;">
+    <div fxFlex="0%" fxFlex.xs="100%" fxFlex.sm="33%" fxFlex.lg="100%"> 
   <div class="d-flex justify-content-end">
-    <div class="p-2">
+    <div class="p-2" >
       <button mat-icon-button>
       <mat-icon>search</mat-icon>
     </button>
   </div>
-    <div>
+  </div>
+    <div fxFlex="0%" fxFlex.xs="100%" fxFlex.sm="33%" fxFlex.lg="100%" style="margin-right: 20px;">
       <mat-form-field>      
       <input matInput (keyup)="applyFilter($any($event.target).value)" placeholder="search">
     </mat-form-field>
   </div>
-    <div>
-      <button mat-raised-button (click)="addnew()" style="float:right ; margin: 2vh; background-color: #356f9c; color: white;" >
+    <div class="btn1" fxFlex="0%" fxFlex.xs="100%" fxFlex.sm="33%" fxFlex.lg="100%">
+      <button mat-raised-button (click)="addnew()" style="float:right ; margin: 2vh;  background-color: #356f9c; color: white;" >
       <mat-icon>person_add</mat-icon>
     Add Staff        
   </button>
   </div>
+</div>
   </div>
 
       <table mat-table [dataSource]="members" matSort class="mat-elevation-z8">

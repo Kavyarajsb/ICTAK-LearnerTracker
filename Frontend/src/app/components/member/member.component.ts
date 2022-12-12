@@ -7,6 +7,11 @@ import { AddNewMemberComponent } from '../add-new-member/add-new-member.componen
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { ToastrService } from 'ngx-toastr';
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import { map } from 'rxjs/operators';
+// import { Observable, pipe } from 'rxjs';
+import { Observable } from 'rxjs';
+
 
 
 @Component({
@@ -19,9 +24,10 @@ export class MemberComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: any = MatSort;
   @ViewChild(MatPaginator) paginator: any = MatPaginator;
   public members = new MatTableDataSource<MemberData>();
-  
 
-  constructor(private router: Router, private api: ApiService, private dialog: MatDialog, private toastr : ToastrService) { }
+  constructor(private router: Router, private api: ApiService, private dialog: MatDialog, private toastr : ToastrService,
+    private breakpointObserver: BreakpointObserver) { }
+
 
   userrole = localStorage.getItem('userrole');  
   isAdmin:boolean = false;
@@ -32,6 +38,9 @@ export class MemberComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['no', 'name', 'email', 'role', 'update', 'delete'];
 
   ngOnInit(): void {
+
+    
+
     if(this.userrole) {
       if(this.userrole === "Admin"){
         this.isAdmin = true;
@@ -135,6 +144,7 @@ export class MemberComponent implements OnInit, AfterViewInit {
   }
 
 }
+
 
 export interface MemberData {
   _id: any;

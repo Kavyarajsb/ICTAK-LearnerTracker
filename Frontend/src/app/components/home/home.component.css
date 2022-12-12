@@ -111,4 +111,10 @@ button {
   }
 }
 
+mat-sidenav-content > button:hover {
+  color: #8e0c37;
+}
 
+.menu-button:hover{
+  color:  #65e9f2;
+}

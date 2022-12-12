@@ -22,3 +22,8 @@ th.mat-sort-header-sorted {
 button.mat-raised-button:hover {
   background-color: 'blue';
 }
+
+.btn1 > button:hover{
+  color: black !important ;
+}
+

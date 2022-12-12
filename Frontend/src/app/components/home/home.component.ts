@@ -48,7 +48,7 @@ export class HomeComponent implements OnInit {
         this.isTH = true;
          this.bgcolor ='#21b899';
          this.bgimg= "url('../../../assets/greenbg.jpg')";
-         this.shdwcolor = 'rgba(80, 217, 121, 1)';
+         this.shdwcolor = 'rgba(46, 242, 202, 1)';
          // this.bgprofile='#d2cede';
       }
       else if(this.userrole === "Placement Officer"){

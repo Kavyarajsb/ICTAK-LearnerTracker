@@ -16,7 +16,7 @@ th.mat-sort-header-sorted {
 }
 .mat-form-field {
     font-size: 14px;
-    width: 100%;
+    width: 20vw;
     color: gray;
 }
 
@@ -24,3 +24,8 @@ th.mat-sort-header-sorted {
   position: absolute;
   text-align: left;   
 }  */
+
+.btn2 > button:hover{
+  color: black !important ;
+}
+
