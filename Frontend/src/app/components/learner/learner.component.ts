@@ -100,10 +100,11 @@ export class LearnerComponent implements OnInit, AfterViewInit {
       const dialogRef = this.dialog.open(LearnerdialogueComponent, dialogConfig);
     
       // save data to db after clicking SAVE from dialog popup
-      dialogRef.afterClosed().subscribe(
-        data => {
+      dialogRef.afterClosed().subscribe({
+        next:(data) => {
           if(data){ // if save button clicked
-            this.api.updateLearnerDetails(data).subscribe(res =>{
+            this.api.updateLearnerDetails(data).subscribe(
+              res =>{
               this.toastr.success('Learner updated successfully','',{timeOut:2000});
               this.getData();
             })
@@ -112,10 +113,10 @@ export class LearnerComponent implements OnInit, AfterViewInit {
             console.log("close without validation on edit learner");
           }          
         },
-        error => {
-          alert(error);
+        error: (e) => {
+          this.toastr.error("Error updating learner. Please try again","",{timeOut: 2000});
         }
-      );    
+      });    
   }
 
   // delete learner
@@ -141,8 +142,8 @@ export class LearnerComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(LearnerdialogueComponent, dialogConfig);
     
     // call below event once the dialog popup closed
-    dialogRef.afterClosed().subscribe(
-      data => {
+    dialogRef.afterClosed().subscribe({
+      next: (data) => {
         // if save clicked
         if(data){
           this.api.addNewLearner(data).subscribe(res =>{
@@ -152,11 +153,12 @@ export class LearnerComponent implements OnInit, AfterViewInit {
         }
         else { // if close button clicked
           console.log("close without validation on add learner");
-        }        
+        }
       },
-      error => {
-        console.log(error);
-      }
+      error:(e) => {
+        this.toastr.error("Error adding learner. Please try again.","",{timeOut: 2000});
+      }   
+    }   
     ); 
   }
 
@@ -169,22 +171,33 @@ export class LearnerComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(LearneruploaddialogueComponent, dialogConfig);
   
     // call below event once the dialog popup closed
-    dialogRef.afterClosed().subscribe(
-      data => {
-        // if save clicked
-        if(data){
-          this.api.uploadCSV(data).subscribe(res => {
-            this.toastr.success('Learner uploaded successfully','',{timeOut:2000});
-            //console.log(res);
-            this.getData();
-          });          
-        }
-        else { // if close button clicked
-          console.log("close without validation on add learner");
-        }        
-      }
-      
-    ); 
+    dialogRef.afterClosed().subscribe({
+      next:(data) => {
+          // if save clicked
+          if(data){
+            //this.api.uploadCSV(data).subscribe({
+            this.api.upload(data).subscribe({
+              next:(res)=>{
+                this.toastr.success('Learner updated successfully','',{timeOut:2000});
+                this.getData();
+              },
+              error:(e)=>{
+                this.toastr.error(e.error,"",{timeOut: 2000});
+              }
+            }            
+            );          
+          }
+          else { // if close button clicked
+            console.log("close without validation on add learner");
+           // this.toastr.error("Upload Error. Please check mandatory fields and duplicates","",{timeOut: 2000});
+          }        
+      },
+      error:(e)=>{
+        console.log(e);
+        //this.toastr.error("Upload Error. Please check mandatory fields and duplicates","",{timeOut: 2000});
+      },
+      complete:() => console.log("Upload popup closed")
+    }); 
 
   }
 

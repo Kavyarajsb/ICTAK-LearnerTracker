@@ -55,6 +55,10 @@ export class ApiService {
     return this.http.post(`${this.apiUrl}/uploadlearners`, file)
   }
 
+  upload(file:any) {
+    return this.http.post(`${this.apiUrl}/upload`, file)
+  }
+
   getTHCount(){
     return this.http.get(`${this.apiUrl}/staffthcount`);
   }

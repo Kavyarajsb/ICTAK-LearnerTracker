@@ -15,9 +15,8 @@ export class LearneruploaddialogueComponent implements OnInit {
   selectedFile!: File;
   isDisabled:boolean = true;
 
-  constructor(private router : Router,
-    private dialogRef : MatDialogRef<LearneruploaddialogueComponent> 
-    , private toastr:ToastrService) { }
+  constructor(private router : Router,private toastr : ToastrService,
+    private dialogRef : MatDialogRef<LearneruploaddialogueComponent>) { }
 
   ngOnInit(): void {
     if(this.userrole === "Training Head"){
@@ -42,7 +41,7 @@ export class LearneruploaddialogueComponent implements OnInit {
   onSelectedFile(event: any){
      this.selectedFile = <File>event.target.files[0];
      if(this.selectedFile.name.endsWith(".csv")){
-       this.isDisabled = false;
+       this.isDisabled = false;       
      }else{
        this.isDisabled = true;
        this.toastr.warning("Only csv files allowed",'',{timeOut:2000});
